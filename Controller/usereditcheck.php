@@ -7,13 +7,9 @@ $lastname = $_REQUEST['Lastname'];
 $username = $_REQUEST['Username'];
 $email = $_REQUEST['Email'];
 $mobile = $_REQUEST['Mobile'];
-$dob = $_REQUEST['DOB'];
-$gender = (isset($_REQUEST['Gender'])) ? $_REQUEST['Gender'] : '';
 
 
-if (
-    $firstname=='' ||$lastname=='' || $username=='' ||$email=='' ||$password=='' ||$conpassword=='' ||$mobile==''||$dob=='' ||$gender == ''
-) {
+if ($firstname=='' ||$lastname=='' || $username=='' ||$email=='' ||$mobile=='') {
     echo 'All Fields must be filled.';
 } elseif (!ctype_upper($firstname[0]) || !ctype_alpha($firstname)) {
     echo 'First Name should start with a capital letter and contain only alphabetic characters.';
@@ -25,14 +21,10 @@ if (
     echo 'Email should include "@" and "." symbols.';
 } elseif (strlen($mobile) !== 11 || !ctype_digit($mobile) || !in_array(substr($mobile, 0, 3), ['017', '016', '018', '015', '019', '013'])) {
     echo 'Invalid mobile number. It should be 11 digits long, contain only digits, and start with 017, 016, 018, 015, 019, or 013.';
-} elseif (strlen($password) < 6 || strpbrk($password, '!@#$%^&*()+=-[]{}|:;"\'<>,.?/~`') == false || strpbrk($password, '0123456789') == false || strpbrk($password, 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') == false || strpbrk($password, 'abcdefghijklmnopqrstuvwxyz') == false) {
-    echo 'Password should be at least 8 characters with at least one uppercase letter, one lowercase letter, one special character, and one number.';
-} elseif ($password !== $conpassword) {
-    echo 'Passwords do not match.';
-} else {
-   $status= signup($firstname,$lastname,$username,$email,$mobile,$dob,$gender,$password,$usertype);
+}  else {
+   $status= editUserInfo($firstname, $lastname, $username, $email, $mobile);
    if ($status) {
-    header('location:../view/signin.php');
+    header('location:../View/useraccount.php');
    } else {
     echo 'Username or Email Already Taken.';
    }

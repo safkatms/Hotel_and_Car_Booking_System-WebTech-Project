@@ -1,3 +1,5 @@
+<?php include_once('../Model/usermodel.php')?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,10 +16,9 @@
                 <h3 style="font-family: fantasy;">StayDriveGo.com</h3>
             </div>
             <div style="width: 60%; text-align: right;">
-                <a href="home.php">Home</a>|
-                <a href="signin.php">Sign in</a>|
-                <a href="usersignup.php">Sign up</a>|
-                <a href="SignUpAsPartner.html">Sign up as Partner</a>
+                <a href="userhome.php">Home</a>|
+                Logged in as <a href="useraccount.php"><?php  if(isset($_COOKIE['firstname'])) {echo $_COOKIE['firstname'];  }?></a> |
+                <a href="../Controller/logout.php">Logout</a>
             </div>
         </section>
     </header>

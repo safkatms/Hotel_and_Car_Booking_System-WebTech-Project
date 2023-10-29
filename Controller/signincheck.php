@@ -13,7 +13,7 @@
          $status1 = signinCar($username, $password);
          if($status){
              $_SESSION['flag'] = "true";
-             echo"user";
+             header("location: ../view/userhome.php");
          }elseif($status1){
             $_SESSION["flag"] = "true";
             echo"car";
