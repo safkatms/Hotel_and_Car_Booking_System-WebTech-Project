@@ -10,9 +10,9 @@ function signup($firstname, $lastname, $username, $email, $mobile, $dob, $gender
     $result = mysqli_query($con, $sql);
     $result1 = mysqli_query($con, $sql1);
     $count =  mysqli_num_rows($result);
-    $count1 =mysqli_num_rows($result1);
+    $count1 = mysqli_num_rows($result1);
 
-    if ($count == 1||$count1==1) {
+    if ($count == 1 || $count1 == 1) {
         return false;
     } else {
         $sql2 = "INSERT INTO usersinfo (firstname,lastname,username,email,mobile,dob,gender,password) VALUES('{$firstname}','{$lastname}','{$username}' , '{$email}' ,'{$mobile}','{$dob}','{$gender}','{$password}')";
@@ -25,7 +25,6 @@ function signup($firstname, $lastname, $username, $email, $mobile, $dob, $gender
             return false;
         }
     }
-
 }
 
 
@@ -47,7 +46,7 @@ function signinUser($username, $password)
             $userFirstName = $userData['firstname'];
             $username = $userData['username'];
             setcookie('firstname', $userFirstName, time() + 3600, '/');
-            setcookie('username', $username, time() + 3600,'/') ;
+            setcookie('username', $username, time() + 3600, '/');
         }
         return true;
     } else {
@@ -55,20 +54,7 @@ function signinUser($username, $password)
     }
 }
 
-function signinCar($username, $password)
-{
-    $usertype = "car";
-    $con = getConnection();
-    $sql = "SELECT * FROM signin_info WHERE username='{$username}' AND password='{$password}' AND user_type='{$usertype}'";
-    $result = mysqli_query($con, $sql);
-    $count = mysqli_num_rows($result);
 
-    if ($count == 1) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 function getUserInfo()
 {
@@ -77,7 +63,7 @@ function getUserInfo()
     $sql = "SELECT * FROM usersinfo WHERE username='{$currentUser}' ";
     $result = mysqli_query($con, $sql);
     $users = [];
-    while($row = mysqli_fetch_assoc($result)){
+    while ($row = mysqli_fetch_assoc($result)) {
         array_push($users, $row);
     }
 
@@ -90,12 +76,31 @@ function editUserInfo($firstname, $lastname, $username, $email, $mobile)
     $con = getConnection();
     $sql = "UPDATE usersinfo SET firstname='{$firstname}', lastname='{$lastname}',username='{$username}',email='{$email}',mobile='{$mobile}' WHERE username='{$currentUser}'";
     $result = mysqli_query($con, $sql);
-    if($result){
+    if ($result) {
+        setcookie('firstname', $firstname, time() + 3600, '/');
         return true;
-    }
-    else {
+    } else {
         return false;
     }
 }
 
+function changeUserPassword($currentpassword, $password)
+{
+    $currentUser = $_COOKIE["username"];
+    $con = getConnection();
+    $sql = "SELECT * FROM usersinfo WHERE username='{$currentUser}' AND password='{$currentpassword}' ";
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count==1) {
+        $sql1 = "UPDATE usersinfo SET password='{$password}' WHERE username='{$currentUser}'";
+        $result1 = mysqli_query($con, $sql1);
+            if ($result1) {
+
+                return true;
+            } 
+        return true;
+    } else {
+        return false;
+    }
+}
 ?>

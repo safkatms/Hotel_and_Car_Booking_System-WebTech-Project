@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once "../Model/usermodel.php";
-
+require_once "../Model/ownermodel.php";
+$service = (isset($_REQUEST['Service'])) ? $_REQUEST['Service'] : '';
 $firstname = $_REQUEST['Firstname'];
 $lastname = $_REQUEST['Lastname'];
 $username = $_REQUEST['Username'];
@@ -9,12 +9,11 @@ $email = $_REQUEST['Email'];
 $mobile = $_REQUEST['Mobile'];
 $dob = $_REQUEST['DOB'];
 $gender = (isset($_REQUEST['Gender'])) ? $_REQUEST['Gender'] : '';
-$password= $_REQUEST['Password'];
-$conpassword= $_REQUEST['ConPassword'];
-$usertype='user';
+$password = $_REQUEST['Password'];
+$conpassword = $_REQUEST['ConPassword'];
 
 if (
-    $firstname=='' ||$lastname=='' || $username=='' ||$email=='' ||$password=='' ||$conpassword=='' ||$mobile==''||$dob=='' ||$gender == ''
+    $firstname == '' || $lastname == '' || $username == '' || $email == '' || $password == '' || $conpassword == '' || $mobile == '' || $dob == '' || $gender == '' || $service == ''
 ) {
     echo 'All Fields must be filled.';
 } elseif (!ctype_upper($firstname[0]) || !ctype_alpha($firstname)) {
@@ -32,10 +31,10 @@ if (
 } elseif ($password !== $conpassword) {
     echo 'Passwords do not match.';
 } else {
-   $status= signup($firstname,$lastname,$username,$email,$mobile,$dob,$gender,$password,$usertype);
-   if ($status) {
-    header('location:../view/signin.php');
-   } else {
-    echo 'Username or Email Already Taken.';
-   }
+    $status = ownerSignup($firstname, $lastname, $username, $email, $mobile, $dob, $gender, $password, $service);
+    if ($status) {
+        header('location:../view/signin.php');
+    } else {
+        echo 'Username or Email Already Taken.';
+    }
 }

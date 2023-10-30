@@ -18,7 +18,7 @@
                 <a href="About.html">About</a>|
                 <a href="Terms&Conditions.html">Terms & Conditions</a>|
                 <a href="FAQ.html">FAQ</a>|
-                <a href="SignUpAsPartner.html">Sign up as Partner</a>
+                <a href="ownersignup.php">Sign up as Partner</a>
             </div>
         </section>
     </footer>

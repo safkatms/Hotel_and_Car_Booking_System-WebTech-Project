@@ -19,13 +19,14 @@ require_once('../Model/usermodel.php');
     <section style="display: flex; justify-content: center;">
         <div style="width: 450px;display: flex;height: auto;">
             <fieldset style="width: 100%;">
-                <table>
+            <form action="../Controller/userchangepasswordcheck.php" method="post" enctype="">
+            <table>
                     <tr>
                         <td>
                             Current Password:
                         </td>
                         <td>
-                            <input type="text" name="" value="">
+                            <input type="password" name="Current" value="">
 
                         </td>
                     </tr>
@@ -34,7 +35,7 @@ require_once('../Model/usermodel.php');
                             New Password:
                         </td>
                         <td>
-                            <input type="text" name="" value="">
+                            <input type="password" name="New" value="">
                         </td>
                     </tr>
                     <tr>
@@ -42,7 +43,7 @@ require_once('../Model/usermodel.php');
                             Confirm New Password:
                         </td>
                         <td>
-                            <input type="text" name="" value="">
+                            <input type="password" name="Confirm" value="">
                         </td>
                     </tr>
                     <tr>
@@ -54,6 +55,8 @@ require_once('../Model/usermodel.php');
                         </td>
                     </tr>
                 </table>
+            </form>
+                
 
             </fieldset>
 

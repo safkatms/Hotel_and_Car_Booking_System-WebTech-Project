@@ -17,7 +17,7 @@
                 <a href="home.php">Home</a>|
                 <a href="signin.php">Sign in</a>|
                 <a href="usersignup.php">Sign up</a>|
-                <a href="SignUpAsPartner.html">Sign up as Partner</a>
+                <a href="ownersignup.php">Sign up as Partner</a>
             </div>
         </section>
     </header>
