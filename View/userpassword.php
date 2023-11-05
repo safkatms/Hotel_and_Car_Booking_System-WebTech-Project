@@ -48,10 +48,11 @@ require_once('../Model/usermodel.php');
                     </tr>
                     <tr>
                         <td>
-                            <a href="useraccount.php"><input type="submit" value="Save"></a>
+                            <input type="submit" value="Save">
+                            <a href="useraccount.php"><input type="button" value="Back"></a>
                         </td>
                         <td>
-
+                        
                         </td>
                     </tr>
                 </table>

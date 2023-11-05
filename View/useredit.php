@@ -80,6 +80,7 @@
                     <tr>
                     <td>
                         <input type="submit" value="Save">
+                        <a href="useraccount.php"><input type="button" value="Back"></a>
                     </td>
                     <td>
                      

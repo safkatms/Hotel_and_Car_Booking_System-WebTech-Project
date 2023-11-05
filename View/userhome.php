@@ -1,27 +1,152 @@
-<?php 
-    require_once('../Controller/sessioncheck.php');
+<?php
+require_once '../Controller/sessioncheck.php';
 ?>
+
+</html>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>StayDriveGo Booking</title>
 </head>
+
 <body>
-    <?php include_once('header.php');?>
+    <?php include_once 'header.php'; ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
-            <?php include_once('usermenu.php')?>
+            <?php include_once 'usermenu.php'; ?>
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">
-                <H1>Welcome to StayDriveGo</H1>
+                <section>
+                    <h1>Welcome to StayDriveGo</h1>
+                </section>
+                <!-- Hotel Booking Form -->
+                <section>
+                    <form action="../Controller/hotelsearchcheck.php" method="post">
+                        <fieldset>
+                            <legend>BOOK HOTEL</legend>
+                            <table>
+                                <tr>
+                                    <td>City:
+                                        <select name="city">
+                                        <option value="Dhaka">Dhaka</option>
+                                                <option value="Chittagong">Chittagong</option>
+                                                <option value="Sylhet">Sylhet</option>
+                                                <option value="Barisal">Barisal</option>
+                                                <option value="Khulna">Khulna</option>
+                                                <option value="Mymanshingh">Mymanshingh</option>
+                                                <option value="Rajshahi">Rajshahi</option>
+                                                <option value="Rangpur">Rangpur</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        Check in: <input type="date" name="checkin">
+                                    </td>
+                                    <td>
+                                        Check out: <input type="date" name="checkout">
+                                    </td>
+                                    <td>Room:
+                                        <select name="room">
+                                        <option value="standard">Standard Room</option>
+                                                <option value="deluxe">Deluxe Room</option>
+                                                <option value="suite">Suite</option>
+                                                <option value="single">Single Room</option>
+                                                <option value="double">Double Room</option>
+                                                <option value="twin">Twin Room</option>
+                                                <option value="triple">Triple Room</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Search">
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </form>
+                </section>
+                <!-- Car Booking Form -->
+                <section>
+                    <form action="path_to_car_booking_script.php" method="post">
+                        <fieldset>
+                            <legend>BOOK CAR</legend>
+                            <table>
+                                <tr>
+                                    <td>Pick-up location:
+                                        <select name="pickup_location">
+                                        <option value="Dhaka">Dhaka</option>
+                                                <option value="Chittagong">Chittagong</option>
+                                                <option value="Sylhet">Sylhet</option>
+                                                <option value="Barisal">Barisal</option>
+                                                <option value="Khulna">Khulna</option>
+                                                <option value="Mymanshingh">Mymanshingh</option>
+                                                <option value="Rajshahi">Rajshahi</option>
+                                                <option value="Rangpur">Rangpur</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        Pick-up date: <input type="date" name="pickup_date">
+                                    </td>
+                                    <td>
+                                        Drop-off date: <input type="date" name="dropoff_date">
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Search">
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </form>
+                </section>
+                <!-- Bus Booking Form -->
+                <section>
+                    <form action="path_to_bus_booking_script.php" method="post">
+                        <fieldset>
+                            <legend>BOOK BUS TICKET</legend>
+                            <table>
+                                <tr>
+                                    <td>Departure Location:
+                                        <select name="departure_location">
+                                            <option value="Dhaka">Dhaka</option>
+                                                <option value="Chittagong">Chittagong</option>
+                                                <option value="Sylhet">Sylhet</option>
+                                                <option value="Barisal">Barisal</option>
+                                                <option value="Khulna">Khulna</option>
+                                                <option value="Mymanshingh">Mymanshingh</option>
+                                                <option value="Rajshahi">Rajshahi</option>
+                                                <option value="Rangpur">Rangpur</option>
+                                        </select>
+                                    </td>
+                                    <td>Arrival Location:
+                                        <select name="arrival_location">
+                                        <option value="Dhaka">Dhaka</option>
+                                                <option value="Chittagong">Chittagong</option>
+                                                <option value="Sylhet">Sylhet</option>
+                                                <option value="Barisal">Barisal</option>
+                                                <option value="Khulna">Khulna</option>
+                                                <option value="Mymanshingh">Mymanshingh</option>
+                                                <option value="Rajshahi">Rajshahi</option>
+                                                <option value="Rangpur">Rangpur</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        Journey date: <input type="date" name="journey_date">
+                                    </td>
+                                    <td>
+                                        <input type="submit" value="Search">
+                                    </td>
+                                </tr>
+                            </table>
+                        </fieldset>
+                    </form>
+                </section>
             </fieldset>
-            
         </div>
     </section>
-    <?php include_once('footerpublic.php');?>
+    <?php include_once 'footerpublic.php'; ?>
 </body>
+
 </html>

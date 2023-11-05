@@ -15,9 +15,9 @@
             </div>
 
             <div style="text-align: right; width: 60%;">
-                <a href="About.html">About</a>|
-                <a href="Terms&Conditions.html">Terms & Conditions</a>|
-                <a href="FAQ.html">FAQ</a>|
+                <a href="about.php">About</a>|
+                <a href="terms&conditions.php">Terms & Conditions</a>|
+                <a href="faq.php">FAQ</a>|
                 <a href="ownersignup.php">Sign up as Partner</a>
             </div>
         </section>
