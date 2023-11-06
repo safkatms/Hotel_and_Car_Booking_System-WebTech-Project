@@ -24,40 +24,41 @@ require_once '../Controller/sessioncheck.php';
                 <section>
                     <h1>Welcome to StayDriveGo</h1>
                 </section>
-                <!-- Hotel Booking Form -->
                 <section>
-                    <form action="../Controller/hotelsearchcheck.php" method="post">
+                    <form action="hotelsearching.php" method="get" enctype="">
                         <fieldset>
                             <legend>BOOK HOTEL</legend>
                             <table>
                                 <tr>
                                     <td>City:
-                                        <select name="city">
-                                        <option value="Dhaka">Dhaka</option>
-                                                <option value="Chittagong">Chittagong</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Barisal">Barisal</option>
-                                                <option value="Khulna">Khulna</option>
-                                                <option value="Mymanshingh">Mymanshingh</option>
-                                                <option value="Rajshahi">Rajshahi</option>
-                                                <option value="Rangpur">Rangpur</option>
+                                        <select name="city" required>
+                                            <option value="" selected >Select a Location</option>
+                                            <option value="Dhaka">Dhaka</option>
+                                            <option value="Chittagong">Chittagong</option>
+                                            <option value="Sylhet">Sylhet</option>
+                                            <option value="Barisal">Barisal</option>
+                                            <option value="Khulna">Khulna</option>
+                                            <option value="Mymanshingh">Mymanshingh</option>
+                                            <option value="Rajshahi">Rajshahi</option>
+                                            <option value="Rangpur">Rangpur</option>
                                         </select>
                                     </td>
                                     <td>
-                                        Check in: <input type="date" name="checkin">
+                                        Check in: <input type="date" name="checkin" min="<?= date('Y-m-d'); ?>" value="" required>
                                     </td>
                                     <td>
-                                        Check out: <input type="date" name="checkout">
+                                        Check out: <input type="date" name="checkout" min="<?= date('Y-m-d'); ?>" value="" required>
                                     </td>
                                     <td>Room:
-                                        <select name="room">
-                                        <option value="standard">Standard Room</option>
-                                                <option value="deluxe">Deluxe Room</option>
-                                                <option value="suite">Suite</option>
-                                                <option value="single">Single Room</option>
-                                                <option value="double">Double Room</option>
-                                                <option value="twin">Twin Room</option>
-                                                <option value="triple">Triple Room</option>
+                                        <select name="room" required>
+                                            <option value="" selected >Select a Room</option>
+                                            <option value="standard">Standard Room</option>
+                                            <option value="deluxe">Deluxe Room</option>
+                                            <option value="suite">Suite</option>
+                                            <option value="single">Single Room</option>
+                                            <option value="double">Double Room</option>
+                                            <option value="twin">Twin Room</option>
+                                            <option value="triple">Triple Room</option>
                                         </select>
                                     </td>
                                     <td>
@@ -70,28 +71,29 @@ require_once '../Controller/sessioncheck.php';
                 </section>
                 <!-- Car Booking Form -->
                 <section>
-                    <form action="path_to_car_booking_script.php" method="post">
+                    <form action="carsearching.php" method="get" enctype="">
                         <fieldset>
                             <legend>BOOK CAR</legend>
                             <table>
                                 <tr>
                                     <td>Pick-up location:
-                                        <select name="pickup_location">
-                                        <option value="Dhaka">Dhaka</option>
-                                                <option value="Chittagong">Chittagong</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Barisal">Barisal</option>
-                                                <option value="Khulna">Khulna</option>
-                                                <option value="Mymanshingh">Mymanshingh</option>
-                                                <option value="Rajshahi">Rajshahi</option>
-                                                <option value="Rangpur">Rangpur</option>
+                                        <select name="pickup_location" required>
+                                            <option value="" selected>Select a location</option>
+                                            <option value="Dhaka">Dhaka</option>
+                                            <option value="Chittagong">Chittagong</option>
+                                            <option value="Sylhet">Sylhet</option>
+                                            <option value="Barisal">Barisal</option>
+                                            <option value="Khulna">Khulna</option>
+                                            <option value="Mymanshingh">Mymanshingh</option>
+                                            <option value="Rajshahi">Rajshahi</option>
+                                            <option value="Rangpur">Rangpur</option>
                                         </select>
                                     </td>
                                     <td>
-                                        Pick-up date: <input type="date" name="pickup_date">
+                                        Pick-up date: <input type="date" name="pickup_date" min="<?= date('Y-m-d'); ?>" value="" required>
                                     </td>
                                     <td>
-                                        Drop-off date: <input type="date" name="dropoff_date">
+                                        Drop-off date: <input type="date" name="dropoff_date" min="<?= date('Y-m-d'); ?>" value="" required>
                                     </td>
                                     <td>
                                         <input type="submit" value="Search">

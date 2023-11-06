@@ -11,13 +11,24 @@ function HotelSearch($city,$room,$checkin,$checkout)
     $hotels = [];
     while ($row = mysqli_fetch_assoc($result)) {
         array_push($hotels, $row);
-        setcookie('city', $city, time() + 3600, '/');
-        setcookie('checkin', $checkin, time() + 3600, '/');
-        setcookie('checkout', $checkout, time() + 3600, '/');
-        setcookie('room', $room, time() + 3600, '/');
     }
 
     return $hotels;
 }
+
+function CarSearch($pickup_location,$pickup_date,$dropoff_date)
+{
+    $AvailabilityStatus = 'Available';
+    $con = getConnection();
+    $sql = "SELECT * FROM car_info WHERE AvailabilityStatus='{$AvailabilityStatus}' AND Location='{$pickup_location}'";
+    $result = mysqli_query($con, $sql);
+    $cars = [];
+    while ($row = mysqli_fetch_assoc($result)) {
+        array_push($cars, $row);
+    }
+
+    return $cars;
+}
+
 
 ?>
