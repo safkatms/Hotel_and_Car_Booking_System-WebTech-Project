@@ -44,9 +44,17 @@ function signinUser($username, $password)
         if ($userData) {
             // Store only the user's first name in a cookie
             $userFirstName = $userData['firstname'];
+            $userLastName = $userData['lastname'];
             $username = $userData['username'];
-            setcookie('firstname', $userFirstName, time() + 3600, '/');
+            $userEmail = $userData['email'];
+            $userMobile = $userData['mobile'];
+
+            //setcookie('firstname', $userFirstName, time() + 3600, '/');
             setcookie('username', $username, time() + 3600, '/');
+            $_SESSION['firstname']=$userFirstName;
+            $_SESSION['lastname']=$userLastName;
+            $_SESSION['mobile']=$userMobile;
+            $_SESSION['email']=$userEmail;
         }
         return true;
     } else {

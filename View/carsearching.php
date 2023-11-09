@@ -1,4 +1,5 @@
 <?php
+require_once '../Controller/sessioncheck.php';
 require_once '../Model/searchingmodel.php'; // Make sure this contains the CarSearch function.
 
 // Check if the form is submitted via GET
@@ -51,22 +52,26 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
                                 <tr>
                                     <td>Pick-up location:
                                         <select name="pickup_location" required>
-                                            <option value="" selected>Select a location</option>
-                                            <option value="Dhaka">Dhaka</option>
-                                            <option value="Chittagong">Chittagong</option>
-                                            <option value="Sylhet">Sylhet</option>
-                                            <option value="Barisal">Barisal</option>
-                                            <option value="Khulna">Khulna</option>
-                                            <option value="Mymanshingh">Mymanshingh</option>
-                                            <option value="Rajshahi">Rajshahi</option>
-                                            <option value="Rangpur">Rangpur</option>
+                                            <option value="" <?php if (!isset($_SESSION['location']) || $_SESSION['location'] == "") echo " selected"; ?>>Select a Location</option>
+                                            <option value="Dhaka" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Dhaka") echo " selected"; ?>>Dhaka</option>
+                                            <option value="Chittagong" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Chittagong") echo " selected"; ?>>Chittagong</option>
+                                            <option value="Sylhet" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Sylhet") echo " selected"; ?>>Sylhet</option>
+                                            <option value="Barisal" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Barisal") echo " selected"; ?>>Barisal</option>
+                                            <option value="Khulna" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Khulna") echo " selected"; ?>>Khulna</option>
+                                            <option value="Mymensingh" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Mymensingh") echo " selected"; ?>>Mymensingh</option>
+                                            <option value="Rajshahi" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Rajshahi") echo " selected"; ?>>Rajshahi</option>
+                                            <option value="Rangpur" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Rangpur") echo " selected"; ?>>Rangpur</option>
                                         </select>
                                     </td>
                                     <td>
-                                        Pick-up date: <input type="date" name="pickup_date" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Pick-up date: <input type="date" name="pickup_date" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['pickup'])) {
+                                                                                                                            echo $_SESSION['pickup'];
+                                                                                                                        } ?>" required>
                                     </td>
                                     <td>
-                                        Drop-off date: <input type="date" name="dropoff_date" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Drop-off date: <input type="date" name="dropoff_date" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['dropoff'])) {
+                                                                                                                            echo $_SESSION['dropoff'];
+                                                                                                                        } ?>" required>
                                     </td>
                                     <td>
                                         <input type="submit" value="Search">

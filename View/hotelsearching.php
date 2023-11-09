@@ -1,4 +1,5 @@
 <?php
+require_once '../Controller/sessioncheck.php';
 require_once '../Model/searchingmodel.php'; // Make sure this contains the HotelSearch function.
 
 // Check if the form is submitted via GET
@@ -9,10 +10,10 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
     $checkout = $_GET['checkout'];
     $room = $_GET['room'];
     if ($checkin == $checkout) {
-        $error_message="Insert different check-out date.";
+        $error_message = "Insert different check-out date.";
     } else {
-    // Perform the search
-    $hotels = HotelSearch($city,$room,$checkin,$checkout);
+        // Perform the search
+        $hotels = HotelSearch($city, $room, $checkin, $checkout);
     }
 } else {
     // Redirect back to search form if criteria are missing
@@ -49,34 +50,40 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
                                 <tr>
                                     <td>City:
                                         <select name="city" required>
-                                            <option value="" selected >Select a Location</option>
-                                            <option value="Dhaka">Dhaka</option>
-                                            <option value="Chittagong">Chittagong</option>
-                                            <option value="Sylhet">Sylhet</option>
-                                            <option value="Barisal">Barisal</option>
-                                            <option value="Khulna">Khulna</option>
-                                            <option value="Mymanshingh">Mymanshingh</option>
-                                            <option value="Rajshahi">Rajshahi</option>
-                                            <option value="Rangpur">Rangpur</option>
+                                            <option value="" <?php if (!isset($_SESSION['city']) || $_SESSION['city'] == "") echo " selected"; ?>>Select a Location</option>
+                                            <option value="Dhaka" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Dhaka") echo " selected"; ?>>Dhaka</option>
+                                            <option value="Chittagong" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Chittagong") echo " selected"; ?>>Chittagong</option>
+                                            <option value="Sylhet" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Sylhet") echo " selected"; ?>>Sylhet</option>
+                                            <option value="Barisal" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Barisal") echo " selected"; ?>>Barisal</option>
+                                            <option value="Khulna" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Khulna") echo " selected"; ?>>Khulna</option>
+                                            <option value="Mymensingh" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Mymensingh") echo " selected"; ?>>Mymensingh</option>
+                                            <option value="Rajshahi" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Rajshahi") echo " selected"; ?>>Rajshahi</option>
+                                            <option value="Rangpur" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Rangpur") echo " selected"; ?>>Rangpur</option>
                                         </select>
+
                                     </td>
                                     <td>
-                                        Check in: <input type="date" name="checkin" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Check in: <input type="date" name="checkin" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkin'])) {
+                                                                                                                            echo $_SESSION['checkin'];
+                                                                                                                        } ?>" required>
                                     </td>
                                     <td>
-                                        Check out: <input type="date" name="checkout" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Check out: <input type="date" name="checkout" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkout'])) {
+                                                                                                                                echo $_SESSION['checkout'];
+                                                                                                                            } ?>" required>
                                     </td>
                                     <td>Room:
                                         <select name="room" required>
-                                            <option value="" selected >Select a Room</option>
-                                            <option value="standard">Standard Room</option>
-                                            <option value="deluxe">Deluxe Room</option>
-                                            <option value="suite">Suite</option>
-                                            <option value="single">Single Room</option>
-                                            <option value="double">Double Room</option>
-                                            <option value="twin">Twin Room</option>
-                                            <option value="triple">Triple Room</option>
+                                            <option value="" <?php if (!isset($_SESSION['room']) || $_SESSION['room'] == "") echo " selected"; ?>>Select a Room</option>
+                                            <option value="standard" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "standard") echo " selected"; ?>>Standard Room</option>
+                                            <option value="deluxe" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "deluxe") echo " selected"; ?>>Deluxe Room</option>
+                                            <option value="suite" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "suite") echo " selected"; ?>>Suite</option>
+                                            <option value="single" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "single") echo " selected"; ?>>Single Room</option>
+                                            <option value="double" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "double") echo " selected"; ?>>Double Room</option>
+                                            <option value="twin" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "twin") echo " selected"; ?>>Twin Room</option>
+                                            <option value="triple" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "triple") echo " selected"; ?>>Triple Room</option>
                                         </select>
+
                                     </td>
                                     <td>
                                         <input type="submit" value="Search">
@@ -99,7 +106,7 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
 
                             <?php for ($i = 0; $i < count($hotels); $i++) { ?>
                                 <tr>
-                                    
+
                                     <td>
                                         <?= $hotels[$i]['HotelName'] ?>
                                     </td>
@@ -116,7 +123,7 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
                                         <?= $hotels[$i]['PricePerNight'] ?>
                                     </td>
                                     <td>
-                                    <a href="edit_user.php?id=<?=$hotels[$i]['HotelID']?>"> <input type="button" value="Select"> </a>
+                                        <a href="hotelbooking.php?id=<?= $hotels[$i]['RoomTypeID']  ?>"> <input type="button" value="Select"> </a>
                                     </td>
                                 </tr>
                             <?php } ?>

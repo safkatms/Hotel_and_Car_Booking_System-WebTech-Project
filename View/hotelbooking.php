@@ -1,18 +1,13 @@
 <?php
-require_once '../controller/sessionCheck.php';
-require_once '../Model/searchingmodel.php';
-require_once '../Controller/hotelsearchcheck.php';
+require_once '../Controller/sessioncheck.php';
+require_once '../Model/bookingmodel.php';
 
-$hotels = [];
-if (isset($_POST['city']) && isset($_POST['room'])) {
-    $city = $_POST['city'];
-    $room = $_POST['room'];
-    $hotels = HotelSearch($city, $room, $checkin, $checkout);
-}
+$roomID=$_GET['id'];
+$bookingInfo = HotelBooking( $roomID );
+ 
 
 ?>
 
-</html>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -31,85 +26,57 @@ if (isset($_POST['city']) && isset($_POST['room'])) {
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">
+            <form action="../Controller/hotelbookingcheck.php" method="post" enctype="">
+                <table style="width:100%">
+                    <tr>
+                        <td colspan="2">
+                            <h1>Hotel Information</h1>
+                        </td>
+                        <td colspan="2">
+                            <h1>Your Information</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Name:</td>
+                        <td><input type="text" name="HotelName" id="" value="<?=$bookingInfo['HotelName']?>" disabled></td>
+                        <td>Name:</td>
+                        <td><input type="text" name="UserFullName" id="" value="<?php  if(isset($_SESSION['firstname'])) {echo $_SESSION['firstname'];  }?> <?php  if(isset($_SESSION['lastname'])) {echo $_SESSION['lastname'];  }?>" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Room Type:</td>
+                        <td><input type="hidden" name="RoomTypeID" value="<?=$bookingInfo['RoomTypeID']?>"><input type="text" name="RoomType" id="" value="<?=$bookingInfo['TypeName']?>" ></td>
+                        <td>Email:</td>
+                        <td><input type="email" name="UserEmail" id="" value="<?php  if(isset($_SESSION['email'])) {echo $_SESSION['email'];  }?>" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Price per Night:</td>
+                        <td><input type="text" name="PricePerNight" id="" value="<?=$bookingInfo['PricePerNight']?>" disabled></td>
+                        <td>Mobile:</td>
+                        <td><input type="text" name="UserMobile" id="" value="<?php  if(isset($_SESSION['mobile'])) {echo $_SESSION['mobile'];  }?>" disabled></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <h1>Booking Information</h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Check-in Date:</td>
+                        <td><input type="date" name="CheckinDate" id="" value="<?php  if(isset($_SESSION['checkin'])) {echo $_SESSION['checkin'];  }?>" disabled></td>
+                        <td>Check-out Date:</td>
+                        <td><input type="date" name="CheckoutDate" id="" value="<?php  if(isset($_SESSION['checkout'])) {echo $_SESSION['checkout'];  }?>" disabled></td>
+                    </tr>
+                    <tr>
+                        <td>Number of Room:</td>
+                        <td><input type="number" name="NumberofRoom" id="" min="1"></td>
+                        <td>Total Price:</td>
+                        <td><input type="text" name="TotalPrice" id="" value="<?php echo $totalPrice; ?>" disabled></td>
+                    </tr>
+                </table>
+                <hr>
+                <input type="submit" value="Confirm">
+            </form>
 
-                <section>
-                    <form action="../Controller/hotelsearchcheck.php" method="post" enctype="">
-                        <fieldset>
-                            <legend>BOOK HOTEL</legend>
-                            <table>
-                                <tr>
-                                    <td>City:
-                                        <select name="city">
-                                            <option value="Dhaka">Dhaka</option>
-                                            <option value="Chittagong">Chittagong</option>
-                                            <option value="Sylhet">Sylhet</option>
-                                            <option value="Barisal">Barisal</option>
-                                            <option value="Khulna">Khulna</option>
-                                            <option value="Mymanshingh">Mymanshingh</option>
-                                            <option value="Rajshahi">Rajshahi</option>
-                                            <option value="Rangpur">Rangpur</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        Check in: <input type="date" name="checkin" value="<?php if (isset($_COOKIE['checkin'])) {
-                                                                                                echo $_COOKIE['checkin'];
-                                                                                            } ?>">
-                                    </td>
-                                    <td>
-                                        Check out: <input type="date" name="checkout" value="<?php if (isset($_COOKIE['checkout'])) {
-                                                                                                    echo $_COOKIE['checkout'];
-                                                                                                } ?>">
-                                    </td>
-                                    <td>Room:
-                                        <select name="room">
-                                            <option value="standard">Standard Room</option>
-                                            <option value="deluxe">Deluxe Room</option>
-                                            <option value="suite">Suite</option>
-                                            <option value="single">Single Room</option>
-                                            <option value="double">Double Room</option>
-                                            <option value="twin">Twin Room</option>
-                                            <option value="triple">Triple Room</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Search">
-                                    </td>
-                                </tr>
-                            </table>
-                            <?php if (!empty($hotels)) : ?>
-                                <table border="1">
-                                    <tr>
-                                        <th>Hotel ID</th>
-                                        <th>Hotel Name</th>
-                                        <th>City</th>
-                                        <th>Room Type</th>
-                                        <th>Available Rooms</th>
-                                        <th>Price Per Night</th>
-                                        <th>Actions</th>
-                                    </tr>
-
-                                    <?php foreach ($hotels as $hotel) : ?>
-                                        <tr>
-                                            <td><?= htmlspecialchars($hotel['HotelID']) ?></td>
-                                            <td><?= htmlspecialchars($hotel['HotelName']) ?></td>
-                                            <td><?= htmlspecialchars($hotel['City']) ?></td>
-                                            <td><?= htmlspecialchars($hotel['TypeName']) ?></td>
-                                            <td><?= htmlspecialchars($hotel['AvailableRooms']) ?></td>
-                                            <td><?= htmlspecialchars($hotel['PricePerNight']) ?></td>
-                                            <td>
-                                                <a href="edit_user.php?id=<?= urlencode($hotel['HotelID']) ?>">EDIT</a> |
-                                                <a href="delete_user.php?id=<?= urlencode($hotel['HotelID']) ?>" onclick="return confirm('Are you sure you want to delete this item?');">DELETE</a>
-                                            </td>
-                                        </tr>
-                                    <?php endforeach; ?>
-                                </table>
-                            <?php else : ?>
-                                <p>No hotels found.</p>
-                            <?php endif; ?>
-
-                        </fieldset>
-                    </form>
-                </section>
+                
             </fieldset>
         </div>
     </section>

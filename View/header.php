@@ -17,7 +17,7 @@
             </div>
             <div style="width: 60%; text-align: right;">
                 <a href="userhome.php">Home</a>|
-                Logged in as <a href="useraccount.php"><?php  if(isset($_COOKIE['firstname'])) {echo $_COOKIE['firstname'];  }?></a> |
+                Logged in as <a href="useraccount.php"><?php  if(isset($_SESSION['firstname'])) {echo $_SESSION['firstname'];  }?></a> |
                 <a href="../Controller/logout.php">Logout</a>
             </div>
         </section>
