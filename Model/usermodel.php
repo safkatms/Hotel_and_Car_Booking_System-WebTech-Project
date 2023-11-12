@@ -42,7 +42,6 @@ function signinUser($username, $password)
         $userData = mysqli_fetch_assoc($result1);
 
         if ($userData) {
-            // Store only the user's first name in a cookie
             $userFirstName = $userData['firstname'];
             $userLastName = $userData['lastname'];
             $username = $userData['username'];
@@ -78,11 +77,11 @@ function getUserInfo()
     return $users;
 }
 
-function editUserInfo($firstname, $lastname, $username, $email, $mobile)
+function editUserInfo($firstname, $lastname, $email, $mobile)
 {
     $currentUser = $_COOKIE["username"];
     $con = getConnection();
-    $sql = "UPDATE usersinfo SET firstname='{$firstname}', lastname='{$lastname}',username='{$username}',email='{$email}',mobile='{$mobile}' WHERE username='{$currentUser}'";
+    $sql = "UPDATE usersinfo SET firstname='{$firstname}', lastname='{$lastname}',email='{$email}',mobile='{$mobile}' WHERE username='{$currentUser}'";
     $result = mysqli_query($con, $sql);
     if ($result) {
         setcookie('firstname', $firstname, time() + 3600, '/');

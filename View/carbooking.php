@@ -2,8 +2,8 @@
 require_once '../Controller/sessioncheck.php';
 require_once '../Model/bookingmodel.php';
 
-$roomID=$_GET['id'];
-$bookingInfo = HotelBooking( $roomID );
+$CarID=$_GET['id'];
+$bookingInfo = CarBooking( $CarID );
  
 
 ?>
@@ -26,31 +26,31 @@ $bookingInfo = HotelBooking( $roomID );
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">
-            <form action="../Controller/hotelbookingcheck.php" method="post" enctype="">
+            <form action="../Controller/carbookingcheck.php" method="post" enctype="">
                 <table style="width:100%">
                     <tr>
                         <td colspan="2">
-                            <h1>Hotel Information</h1>
+                            <h1>Car Information</h1>
                         </td>
                         <td colspan="2">
                             <h1>Your Information</h1>
                         </td>
                     </tr>
                     <tr>
-                        <td>Name:</td>
-                        <td><input type="hidden" name="HotelID" value="<?=$bookingInfo['HotelID']?>"><input type="text" name="HotelName" id="" value="<?=$bookingInfo['HotelName']?>" readonly></td>
+                        <td>Brand:</td>
+                        <td><input type="hidden" name="CarID" value="<?=$bookingInfo['CarID']?>"><input type="text" name="Brand" id="" value="<?=$bookingInfo['Barnd']?>" readonly></td>
                         <td>Name:</td>
                         <td><input type="text" name="UserFullName" id="" value="<?php  if(isset($_SESSION['firstname'])) {echo $_SESSION['firstname'];  }?> <?php  if(isset($_SESSION['lastname'])) {echo $_SESSION['lastname'];  }?>" readonly></td>
                     </tr>
                     <tr>
-                        <td>Room Type:</td>
-                        <td><input type="hidden" name="RoomTypeID" value="<?=$bookingInfo['RoomTypeID']?>"><input type="text" name="RoomType" id="" value="<?=$bookingInfo['TypeName']?>" readonly></td>
+                        <td>Model:</td>
+                        <td><input type="text" name="Model" id="" value="<?=$bookingInfo['Model']?>" readonly></td>
                         <td>Email:</td>
                         <td><input type="email" name="UserEmail" id="" value="<?php  if(isset($_SESSION['email'])) {echo $_SESSION['email'];  }?>" readonly></td>
                     </tr>
                     <tr>
-                        <td>Price per Night:</td>
-                        <td><input type="text" name="PricePerNight" id="" value="<?=$bookingInfo['PricePerNight']?>" readonly></td>
+                        <td>Daily Rate:</td>
+                        <td><input type="text" name="DailyRate" id="" value="<?=$bookingInfo['DailyRate']?>" readonly></td>
                         <td>Mobile:</td>
                         <td><input type="text" name="UserMobile" id="" value="<?php  if(isset($_SESSION['mobile'])) {echo $_SESSION['mobile'];  }?>" readonly></td>
                     </tr>
@@ -60,16 +60,16 @@ $bookingInfo = HotelBooking( $roomID );
                         </td>
                     </tr>
                     <tr>
-                        <td>Check-in Date:</td>
-                        <td><input type="date" name="CheckinDate" id="" value="<?php  if(isset($_SESSION['checkin'])) {echo $_SESSION['checkin'];  }?>" readonly></td>
-                        <td>Check-out Date:</td>
-                        <td><input type="date" name="CheckoutDate" id="" value="<?php  if(isset($_SESSION['checkout'])) {echo $_SESSION['checkout'];  }?>" readonly></td>
+                        <td>Start Date:</td>
+                        <td><input type="date" name="PickupDate" id="" value="<?php  if(isset($_SESSION['pickup'])) {echo $_SESSION['pickup'];  }?>" readonly></td>
+                        <td>End Date:</td>
+                        <td><input type="date" name="DropoffDate" id="" value="<?php  if(isset($_SESSION['dropoff'])) {echo $_SESSION['dropoff'];  }?>" readonly></td>
                     </tr>
                     <tr>
-                        <td>Number of Room:</td>
-                        <td><input type="number" name="NumberofRoom" id="" min="1"></td>
+                        <td>Location:</td>
+                        <td><input type="text" name="Location" value="<?=$bookingInfo['Location']?>" readonly></td>
                         <td>Total Price:</td>
-                        <td><input type="text" name="TotalPrice" id="" value="" readonly></td>
+                        <td><input type="text" name="TotalPrice"  value="" readonly></td>
                     </tr>
                 </table>
                 <hr>

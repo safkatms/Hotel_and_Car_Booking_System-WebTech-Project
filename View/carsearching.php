@@ -110,7 +110,7 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
                                         <?= $cars[$i]['DailyRate'] ?>
                                     </td>
                                     <td>
-                                        <a href="edit_user.php?id=<?= $cars[$i]['CarID'] ?>"> <input type="button" value="Select"> </a>
+                                        <a href="carbooking.php?id=<?= $cars[$i]['CarID'] ?>"> <input type="button" value="Select"> </a>
                                     </td>
                                 </tr>
                             <?php } ?>

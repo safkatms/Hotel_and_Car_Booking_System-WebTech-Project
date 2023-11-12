@@ -42,7 +42,7 @@
                             Username:
                         </td>
                         <td>
-                        <input type="text" name="Username" value="<?php echo $usersinfo[0]['username']; ?>">
+                        <input type="text" name="Username" value="<?php echo $usersinfo[0]['username']; ?>" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -66,7 +66,7 @@
                             Date of Birth:
                         </td>
                         <td>
-                        <?php echo $usersinfo[0]['dob']; ?>
+                        <input type="date" name="" value="<?php echo $usersinfo[0]['dob']; ?>" readonly>
                         </td>
                     </tr>
                     <tr>

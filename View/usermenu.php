@@ -12,8 +12,8 @@
         <ul>
             <li><a href="userhome.php">Home</a></li>
             <li><a href="useraccount.php">Account</a></li>
-            <li><a href="">Notification</a></li>
-            <li><a href="">History</a></li>
+            <li><a href="notification.php">Notification</a></li>
+            <li><a href="bookinghistory.php">History</a></li>
             <li><a href="../Controller/logout.php">Logout</a></li>
         </ul>
     </fieldset>
