@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign in</title>
+    <script src="../Asset/authScript.js"></script>
 </head>
 <body>
     <?php include_once('headerpublic.php');?>
@@ -21,7 +20,7 @@
                             Username:
                         </td>
                         <td>
-                            <input type="text" name="Username" value=""><br>
+                            <input type="text" name="Username" value="" id="Username"><br>
                         </td>
                     </tr>
                     <tr>
@@ -29,19 +28,19 @@
                             Password:
                         </td>
                         <td>
-                            <input type="password" name="Password" value=""><br>
+                            <input type="password" name="Password" value="" id="Password"><br>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td >
-                            <input type="checkbox" name="ShowPassword" value="">Show Password<br>
+                            <input type="checkbox" name="ShowPassword" onclick="showPassword()">Show Password<br>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td >
-                            <input type="submit" value="Sign in">
+                            <input type="submit" value="Sign in" onclick="return validateLogin();">
                         </td>
                     </tr>
                     <tr>

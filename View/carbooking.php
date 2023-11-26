@@ -7,8 +7,6 @@ $bookingInfo = CarBooking( $CarID );
  
 
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,6 +35,7 @@ $bookingInfo = CarBooking( $CarID );
                         </td>
                     </tr>
                     <tr>
+                    <input type="hidden" name="Ownername" value="<?=$bookingInfo['OwnerUsername']?>">
                         <td>Brand:</td>
                         <td><input type="hidden" name="CarID" value="<?=$bookingInfo['CarID']?>"><input type="text" name="Brand" id="" value="<?=$bookingInfo['Barnd']?>" readonly></td>
                         <td>Name:</td>

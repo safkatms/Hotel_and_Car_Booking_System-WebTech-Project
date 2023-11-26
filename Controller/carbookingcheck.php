@@ -3,43 +3,39 @@ session_start();
 require_once("../Model/bookingmodel.php");
 
 
-$numberofroom = 0;
 $bookingstatus = 'Pending';
-$totalPrice = 0;
 
-    $carid = $_REQUEST['CarID'];
+$carid = $_REQUEST['CarID'];
 
-    $brand = $_REQUEST['Brand'];
+$carOwnername = $_REQUEST['Ownername'];
 
-    $model = $_REQUEST['Model'];
+$brand = $_REQUEST['Brand'];
 
-    $dailyrate = $_REQUEST['DailyRate'];
+$model = $_REQUEST['Model'];
 
-    $name = $_REQUEST['UserFullName'];
+$totalprice = $_REQUEST['DailyRate'];
 
-    $email = $_REQUEST['UserEmail'];
+$name = $_REQUEST['UserFullName'];
 
-    $mobile = $_REQUEST['UserMobile'];
+$email = $_REQUEST['UserEmail'];
 
-    $startdate = $_REQUEST['PickupDate'];
+$mobile = $_REQUEST['UserMobile'];
 
-    $enddate = $_REQUEST['DropoffDate'];
+$startdate = $_REQUEST['PickupDate'];
 
-    $location = $_REQUEST['Location'];
+$enddate = $_REQUEST['DropoffDate'];
 
-    $totalprice = $_REQUEST['TotalPrice'];
-
-    
-
-
-    $totalPrice = $price ;
-    $status=CarBookingConfirm($carid,$brand,$model,$name,$email,$mobile,$startdate,$enddate,$location,$bookingstatus,$totalprice);
-    if ($status) {    
-        header("location: ../view/userhome.php");
-    }else{
-        echo "Booking Error";
-    }
+$location = $_REQUEST['Location'];
 
 
 
-?>
+
+
+
+
+$status = CarBookingConfirm($carid,$carOwnername,$brand,$model,$name,$email,$mobile,$startdate,$enddate,$location,$bookingstatus,$totalprice);
+if ($status) {
+    header("location: ../view/userhome.php");
+} else {
+    echo "Booking Error";
+}

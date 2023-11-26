@@ -30,10 +30,14 @@ $totalPrice = 0;
 
     $numberofroom = $_REQUEST['NumberofRoom'];
 
+    $availabe = $_REQUEST['Available'];
+
 
 if ( $numberofroom == ''){
     echo'Number of room is empty';
-} else{
+}elseif( $numberofroom > $availabe){
+    echo "Number of room can't be greater" ;
+}else{
     $totalPrice = $price * $numberofroom;
     $status=HotelBookingConfirm($hotelname,$hotelID,$roomtype,$roomID,$userfullname,$useremail,$usermobile,$checkin,$checkout,$numberofroom,$bookingstatus,$totalPrice);
     if ($status) {    

@@ -24,3 +24,4 @@ if (isset($_POST['city']) && isset($_POST['checkin']) && isset($_POST['checkout'
         }
     }
 }
+?>

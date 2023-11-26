@@ -9,9 +9,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+   <title>Document</title>
+   <script src="../Asset/profileScript.js"></script>
 </head>
 <body>
     <?php include_once('header.php');?>
@@ -25,7 +24,7 @@
                             Firstname:
                         </td>
                         <td>
-                            <input type="text" name="Firstname" value="<?php echo $usersinfo[0]['firstname']; ?>">
+                            <input type="text" name="Firstname" id="Firstname" value="<?php echo $usersinfo[0]['firstname']; ?>">
                         
                         </td>
                     </tr>
@@ -34,7 +33,7 @@
                             Lastname:
                         </td>
                         <td>
-                        <input type="text" name="Lastname" value="<?php echo $usersinfo[0]['lastname']; ?>">
+                        <input type="text" name="Lastname" id="Lastname" value="<?php echo $usersinfo[0]['lastname']; ?>">
                         </td>
                     </tr>
                     <tr>
@@ -42,7 +41,7 @@
                             Username:
                         </td>
                         <td>
-                        <input type="text" name="Username" value="<?php echo $usersinfo[0]['username']; ?>" readonly>
+                        <input type="text" name="Username" id="Username" value="<?php echo $usersinfo[0]['username']; ?>" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -50,7 +49,7 @@
                             Email:
                         </td>
                         <td>
-                        <input type="text" name="Email" value="<?php echo $usersinfo[0]['email']; ?>">
+                        <input type="text" name="Email" id="Email" value="<?php echo $usersinfo[0]['email']; ?>">
                         </td>
                     </tr>
                     <tr>
@@ -58,7 +57,7 @@
                             Mobile:
                         </td>
                         <td>
-                        <input type="text" name="Mobile" value="<?php echo $usersinfo[0]['mobile']; ?>">
+                        <input type="text" name="Mobile" id="Mobile" value="<?php echo $usersinfo[0]['mobile']; ?>">
                         </td>
                     </tr>
                     <tr>
@@ -66,7 +65,7 @@
                             Date of Birth:
                         </td>
                         <td>
-                        <input type="date" name="" value="<?php echo $usersinfo[0]['dob']; ?>" readonly>
+                        <input type="date" name="" id="" value="<?php echo $usersinfo[0]['dob']; ?>" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -79,7 +78,7 @@
                     </tr>
                     <tr>
                     <td>
-                        <input type="submit" value="Save">
+                        <input type="submit" value="Save" onclick="return editProfile();">
                         <a href="useraccount.php"><input type="button" value="Back"></a>
                     </td>
                     <td>

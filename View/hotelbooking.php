@@ -71,6 +71,12 @@ $bookingInfo = HotelBooking( $roomID );
                         <td>Total Price:</td>
                         <td><input type="text" name="TotalPrice" id="" value="" readonly></td>
                     </tr>
+                    <tr>
+                        <td>Available:</td>
+                        <td> <input type="number" name="Available" value="<?=$bookingInfo['AvailableRooms']?>" readonly> </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
                 </table>
                 <hr>
                 <input type="submit" value="Book Now">

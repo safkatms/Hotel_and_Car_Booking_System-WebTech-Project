@@ -2,9 +2,8 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign up</title>
+   <title>Sign up</title>
+   <script src="../Asset/authScript.js"></script>
 </head>
 
 <body>
@@ -24,7 +23,7 @@
                         Firstname:
                     </td>
                     <td>
-                        <input type="text" name="Firstname" value=""><br>
+                        <input type="text" name="Firstname" value="" id="Firstname"><br>
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +31,7 @@
                         Lastname:
                     </td>
                     <td>
-                        <input type="text" name="Lastname" value=""><br>
+                        <input type="text" name="Lastname" value="" id="Lastname"><br>
                     </td>
                 </tr>
                 <tr>
@@ -40,7 +39,7 @@
                         Username:
                     </td>
                     <td>
-                        <input type="text" name="Username" value=""><br>
+                        <input type="text" name="Username" value="" id="Username"><br>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +47,7 @@
                         Email:
                     </td>
                     <td>
-                        <input type="email" name="Email" value=""><br>
+                        <input type="email" name="Email" value="" id="Email"><br>
                     </td>
                 </tr>
                 <tr>
@@ -56,7 +55,7 @@
                         Mobile:
                     </td>
                     <td>
-                        <input type="text" name="Mobile" value="">
+                        <input type="text" name="Mobile" value="" id="Mobile">
                     </td>
                 </tr>
                 <tr>
@@ -64,7 +63,7 @@
                         Date of Birth:
                     </td>
                     <td>
-                        <input type="date" name="DOB" value=""><br>
+                        <input type="date" name="DOB" value="" id="DOB"><br>
                     </td>
                 </tr>
                 <tr>
@@ -72,9 +71,9 @@
                         Gender:
                     </td>
                     <td>
-                        <input type="radio" name="Gender" value="Male">Male
-                        <input type="radio" name="Gender" value="Female">Female
-                        <input type="radio" name="Gender" value="Others">Others
+                        <input type="radio" name="Gender" value="Male" id="Male">Male
+                        <input type="radio" name="Gender" value="Female" id="Female">Female
+                        <input type="radio" name="Gender" value="Others" id="Others">Others
 
                     </td>
                 </tr>
@@ -83,7 +82,7 @@
                         Password:
                     </td>
                     <td>
-                        <input type="password" name="Password" value=""><br>
+                        <input type="password" name="Password" value="" id="Password"><br>
                     </td>
                 </tr>
                 <tr>
@@ -91,18 +90,18 @@
                         Confirm Password:
                     </td>
                     <td>
-                        <input type="password" name="ConPassword" value=""><br>
+                        <input type="password" name="ConPassword" value="" id="ConPassword"><br>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <input type="checkbox" name="ShowPassword" value="">Show Password<br>
+                        <input type="checkbox" name="ShowPassword" value="" id="ShowPassword" onclick="showPassword()">Show Password<br>
                     </td>
                     <td></td>
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <input type="checkbox" name="Terms&Condition" id=""> I agree with the <a href="Terms&Conditions.html">terms and conditions</a>
+                        <input type="checkbox" name="Terms&Condition" id="Terms&Condition"> I agree with the <a href="Terms&Conditions.html">terms and conditions</a>
                     </td>
                 </tr>
                 <tr>
@@ -110,7 +109,7 @@
                         <input type="reset" value="Clear">
                     </td>
                     <td>
-                        <input type="submit" value="Sign up">
+                        <input type="submit" value="Sign up" onclick="return userSignUp();">
                     </td>
                 </tr>
                 <tr>

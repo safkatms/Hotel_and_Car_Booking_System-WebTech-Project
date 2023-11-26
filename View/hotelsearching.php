@@ -1,10 +1,9 @@
 <?php
 require_once '../Controller/sessioncheck.php';
-require_once '../Model/searchingmodel.php'; // Make sure this contains the HotelSearch function.
+require_once '../Model/searchingmodel.php'; 
 
-// Check if the form is submitted via GET
 if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
-    // Capture the search criteria from the URL
+    
     $city = $_GET['city'];
     $checkin = $_GET['checkin'];
     $checkout = $_GET['checkout'];
@@ -12,11 +11,9 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
     if ($checkin == $checkout) {
         $error_message = "Insert different check-out date.";
     } else {
-        // Perform the search
         $hotels = HotelSearch($city, $room, $checkin, $checkout);
     }
 } else {
-    // Redirect back to search form if criteria are missing
     header('Location: userhome.php');
     exit;
 }
@@ -25,12 +22,11 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StayDriveGo Booking</title>
+   <title>StayDriveGo Booking</title>
+   <script src="../Asset/searchingScript.js"></script>
 </head>
 
 <body>
@@ -43,13 +39,13 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
             <fieldset style="width: 100%;">
 
                 <section>
-                    <form action="" method="get" enctype="">
+                <form action="" method="get" enctype="">
                         <fieldset>
                             <legend>MODIFY SEARCH</legend>
                             <table>
                                 <tr>
                                     <td>City:
-                                        <select name="city" required>
+                                        <select name="city" id="city">
                                             <option value="" <?php if (!isset($_SESSION['city']) || $_SESSION['city'] == "") echo " selected"; ?>>Select a Location</option>
                                             <option value="Dhaka" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Dhaka") echo " selected"; ?>>Dhaka</option>
                                             <option value="Chittagong" <?php if (isset($_SESSION['city']) && $_SESSION['city'] == "Chittagong") echo " selected"; ?>>Chittagong</option>
@@ -63,17 +59,17 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
 
                                     </td>
                                     <td>
-                                        Check in: <input type="date" name="checkin" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkin'])) {
+                                        Check in: <input type="date" name="checkin" id="checkin" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkin'])) {
                                                                                                                             echo $_SESSION['checkin'];
-                                                                                                                        } ?>" required>
+                                                                                                                        } ?>" >
                                     </td>
                                     <td>
-                                        Check out: <input type="date" name="checkout" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkout'])) {
+                                        Check out: <input type="date" name="checkout" id="checkout" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkout'])) {
                                                                                                                                 echo $_SESSION['checkout'];
-                                                                                                                            } ?>" required>
+                                                                                                                            } ?>" >
                                     </td>
                                     <td>Room:
-                                        <select name="room" required>
+                                        <select name="room" id="room">
                                             <option value="" <?php if (!isset($_SESSION['room']) || $_SESSION['room'] == "") echo " selected"; ?>>Select a Room</option>
                                             <option value="standard" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "standard") echo " selected"; ?>>Standard Room</option>
                                             <option value="deluxe" <?php if (isset($_SESSION['room']) && $_SESSION['room'] == "deluxe") echo " selected"; ?>>Deluxe Room</option>
@@ -86,7 +82,7 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
 
                                     </td>
                                     <td>
-                                        <input type="submit" value="Search">
+                                        <input type="submit" value="Search" onclick="return hotelSearch();">
                                     </td>
                                 </tr>
                             </table>

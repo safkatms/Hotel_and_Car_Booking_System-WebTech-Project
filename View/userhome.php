@@ -2,15 +2,12 @@
 require_once '../Controller/sessioncheck.php';
 ?>
 
-</html>
 
-<!DOCTYPE html>
-<html lang="en">
+<html >
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StayDriveGo Booking</title>
+    <script src="../Asset/searchingScript.js"></script></script>
 </head>
 
 <body>
@@ -31,7 +28,7 @@ require_once '../Controller/sessioncheck.php';
                             <table>
                                 <tr>
                                     <td>City:
-                                        <select name="city" required>
+                                        <select name="city" id="city">
                                             <option value="" selected >Select a Location</option>
                                             <option value="Dhaka">Dhaka</option>
                                             <option value="Chittagong">Chittagong</option>
@@ -44,13 +41,13 @@ require_once '../Controller/sessioncheck.php';
                                         </select>
                                     </td>
                                     <td>
-                                        Check in: <input type="date" name="checkin" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Check in: <input type="date" name="checkin" id="checkin" min="<?= date('Y-m-d'); ?>" value="" >
                                     </td>
                                     <td>
-                                        Check out: <input type="date" name="checkout" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Check out: <input type="date" name="checkout" id="checkout" min="<?= date('Y-m-d'); ?>" value="" >
                                     </td>
                                     <td>Room:
-                                        <select name="room" required>
+                                        <select name="room" id="room">
                                             <option value="" selected >Select a Room</option>
                                             <option value="standard">Standard Room</option>
                                             <option value="deluxe">Deluxe Room</option>
@@ -62,7 +59,7 @@ require_once '../Controller/sessioncheck.php';
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="submit" value="Search">
+                                        <input type="submit" value="Search" id="button" onclick="return hotelSearch();">
                                     </td>
                                 </tr>
                             </table>
@@ -77,7 +74,7 @@ require_once '../Controller/sessioncheck.php';
                             <table>
                                 <tr>
                                     <td>Pick-up location:
-                                        <select name="pickup_location" required>
+                                        <select name="pickup_location" id="pickup_location">
                                             <option value="" selected>Select a location</option>
                                             <option value="Dhaka">Dhaka</option>
                                             <option value="Chittagong">Chittagong</option>
@@ -90,10 +87,10 @@ require_once '../Controller/sessioncheck.php';
                                         </select>
                                     </td>
                                     <td>
-                                        Pick-up date: <input type="date" name="pickup_date" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Pick-up date: <input type="date" name="pickup_date" id="pickup_date" min="<?= date('Y-m-d'); ?>" value="" required>
                                     </td>
                                     <td>
-                                        Drop-off date: <input type="date" name="dropoff_date" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Drop-off date: <input type="date" name="dropoff_date" id="dropoff_date" min="<?= date('Y-m-d'); ?>" value="" required>
                                     </td>
                                     <td>
                                         <input type="submit" value="Search">
