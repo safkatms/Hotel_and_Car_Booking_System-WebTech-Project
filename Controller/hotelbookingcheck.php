@@ -14,6 +14,8 @@ $totalPrice = 0;
 
     $hotelname = $_REQUEST['HotelName'];
 
+    $hoteladdress = $_REQUEST['HotelAddress'];
+
     $roomtype = $_REQUEST['RoomType'];
 
     $price = $_REQUEST['PricePerNight'];
@@ -39,9 +41,9 @@ if ( $numberofroom == ''){
     echo "Number of room can't be greater" ;
 }else{
     $totalPrice = $price * $numberofroom;
-    $status=HotelBookingConfirm($hotelname,$hotelID,$roomtype,$roomID,$userfullname,$useremail,$usermobile,$checkin,$checkout,$numberofroom,$bookingstatus,$totalPrice);
+    $status=HotelBookingConfirm($hotelname,$hotelID,$hoteladdress,$roomtype,$roomID,$userfullname,$useremail,$usermobile,$checkin,$checkout,$numberofroom,$bookingstatus,$totalPrice);
     if ($status) {    
-        header("location: ../view/userhome.php");
+        header("location: ../view/bookinghistory.php");
     }else{
         echo "Booking Error";
     }

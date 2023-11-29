@@ -38,7 +38,10 @@ $bookingInfo = HotelBooking( $roomID );
                     </tr>
                     <tr>
                         <td>Name:</td>
-                        <td><input type="hidden" name="HotelID" value="<?=$bookingInfo['HotelID']?>"><input type="text" name="HotelName" id="" value="<?=$bookingInfo['HotelName']?>" readonly></td>
+                        <td>
+                            <input type="hidden" name="HotelID" value="<?=$bookingInfo['HotelID']?>">
+                            <input type="text" name="HotelName" id="" value="<?=$bookingInfo['HotelName']?>" readonly>
+                        </td>
                         <td>Name:</td>
                         <td><input type="text" name="UserFullName" id="" value="<?php  if(isset($_SESSION['firstname'])) {echo $_SESSION['firstname'];  }?> <?php  if(isset($_SESSION['lastname'])) {echo $_SESSION['lastname'];  }?>" readonly></td>
                     </tr>
@@ -74,7 +77,7 @@ $bookingInfo = HotelBooking( $roomID );
                     <tr>
                         <td>Available:</td>
                         <td> <input type="number" name="Available" value="<?=$bookingInfo['AvailableRooms']?>" readonly> </td>
-                        <td></td>
+                        <td><input type="hidden" name="HotelAddress" value="<?=$bookingInfo['Address']?>"></td>
                         <td></td>
                     </tr>
                 </table>

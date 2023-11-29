@@ -19,11 +19,11 @@ function HotelBooking($roomID)
     }
 }
 
-function HotelBookingConfirm($hotelname, $hotelID, $roomtype, $roomID, $userfullname, $useremail, $usermobile, $checkin, $checkout, $numberofroom, $bookingstatus, $totalPrice)
+function HotelBookingConfirm($hotelname, $hotelID, $hoteladdress, $roomtype, $roomID, $userfullname, $useremail, $usermobile, $checkin, $checkout, $numberofroom, $bookingstatus, $totalPrice)
 {
-    $currentUser = $_COOKIE["username"];
+    $currentUser = $_SESSION["username"];
     $con = getConnection();
-    $sql = "INSERT INTO hotelbooking (Username, Fullname, Email, Mobile, HotelName, HotelID, RoomTypeName, RoomTypeID, CheckInDate, CheckOutDate, NumberOfRooms, TotalPrice, Status) VALUES ('{$currentUser}', '{$userfullname}', '{$useremail}', '{$usermobile}', '{$hotelname}', '{$hotelID}', '{$roomtype}', '{$roomID}', '{$checkin}', '{$checkout}', '{$numberofroom}', '{$totalPrice}', '{$bookingstatus}')";
+    $sql = "INSERT INTO hotelbooking (Username, Fullname, Email, Mobile, HotelName, HotelID, HotelAddress, RoomTypeName, RoomTypeID, CheckInDate, CheckOutDate, NumberOfRooms, TotalPrice, Status) VALUES ('{$currentUser}', '{$userfullname}', '{$useremail}', '{$usermobile}', '{$hotelname}', '{$hotelID}', '{$hoteladdress}', '{$roomtype}', '{$roomID}', '{$checkin}', '{$checkout}', '{$numberofroom}', '{$totalPrice}', '{$bookingstatus}')";
     $result = mysqli_query($con, $sql);
     if ($result) {
         return true;
@@ -33,7 +33,7 @@ function HotelBookingConfirm($hotelname, $hotelID, $roomtype, $roomID, $userfull
 }
 function HotelBookingHistory()
 {
-    $currentUser = $_COOKIE["username"];
+    $currentUser = $_SESSION["username"];
 
     $con = getConnection();
     $sql = "SELECT * FROM hotelbooking WHERE Username = '{$currentUser}'";
@@ -48,6 +48,21 @@ function HotelBookingHistory()
     return $hotelbookinghistory;
 }
 
+function ViewHotelBooking($bookingID)
+{
+
+    $con = getConnection();
+    $sql = "SELECT * FROM hotelbooking WHERE BookingID='{$bookingID}'";
+
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count == 1) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
+}
 
 function CarBooking($CarID)
 {
@@ -67,7 +82,7 @@ function CarBooking($CarID)
 
 function CarBookingConfirm($carid, $carOwnername, $brand, $model, $name, $email, $mobile, $startdate, $enddate, $location, $bookingstatus, $totalprice)
 {
-    $currentUser = $_COOKIE["username"];
+    $currentUser = $_SESSION["username"];
     $con = getConnection();
     $sql = "INSERT INTO carbooking (Username, Fullname, Email, Mobile, CarID, OwnerUsername, Brand, Model, StartDate, EndDate, Location, TotalPrice, Status) 
     VALUES ('{$currentUser}', '{$name}', '{$email}', '{$mobile}', '{$carid}', '{$carOwnername}', '{$brand}', '{$model}', '{$startdate}', '{$enddate}', '{$location}', '{$totalprice}', '{$bookingstatus}')";
@@ -82,7 +97,7 @@ function CarBookingConfirm($carid, $carOwnername, $brand, $model, $name, $email,
 
 function CarBookingHistory()
 {
-    $currentUser = $_COOKIE["username"];
+    $currentUser = $_SESSION["username"];
 
     $con = getConnection();
     $sql = "SELECT * FROM carbooking WHERE Username = '{$currentUser}'";
@@ -95,4 +110,21 @@ function CarBookingHistory()
 
 
     return $hotelbookinghistory;
+}
+
+
+function ViewCarBooking($bookingID)
+{
+
+    $con = getConnection();
+    $sql = "SELECT * FROM carbooking WHERE BookingID='{$bookingID}'";
+
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count == 1) {
+        $row = mysqli_fetch_assoc($result);
+        return $row;
+    } else {
+        return false;
+    }
 }

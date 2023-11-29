@@ -49,9 +49,11 @@ function signinUser($username, $password)
             $userMobile = $userData['mobile'];
 
             //setcookie('firstname', $userFirstName, time() + 3600, '/');
-            setcookie('username', $username, time() + 3600, '/');
+            //setcookie('username', $username, time() + 3600, '/');
+
             $_SESSION['firstname']=$userFirstName;
             $_SESSION['lastname']=$userLastName;
+            $_SESSION['username']=$username;
             $_SESSION['mobile']=$userMobile;
             $_SESSION['email']=$userEmail;
         }
@@ -65,7 +67,7 @@ function signinUser($username, $password)
 
 function getUserInfo()
 {
-    $currentUser = $_COOKIE['username'];
+    $currentUser = $_SESSION["username"];
     $con = getConnection();
     $sql = "SELECT * FROM usersinfo WHERE username='{$currentUser}' ";
     $result = mysqli_query($con, $sql);
@@ -79,12 +81,12 @@ function getUserInfo()
 
 function editUserInfo($firstname, $lastname, $email, $mobile)
 {
-    $currentUser = $_COOKIE["username"];
+    $currentUser = $_SESSION["username"];
     $con = getConnection();
     $sql = "UPDATE usersinfo SET firstname='{$firstname}', lastname='{$lastname}',email='{$email}',mobile='{$mobile}' WHERE username='{$currentUser}'";
     $result = mysqli_query($con, $sql);
     if ($result) {
-        setcookie('firstname', $firstname, time() + 3600, '/');
+        $_SESSION['firstname']=$firstname;
         return true;
     } else {
         return false;
@@ -93,7 +95,7 @@ function editUserInfo($firstname, $lastname, $email, $mobile)
 
 function changeUserPassword($currentpassword, $password)
 {
-    $currentUser = $_COOKIE["username"];
+    $currentUser = $_SESSION["username"];
     $con = getConnection();
     $sql = "SELECT * FROM usersinfo WHERE username='{$currentUser}' AND password='{$currentpassword}' ";
     $result = mysqli_query($con, $sql);

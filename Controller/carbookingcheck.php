@@ -35,7 +35,7 @@ $location = $_REQUEST['Location'];
 
 $status = CarBookingConfirm($carid,$carOwnername,$brand,$model,$name,$email,$mobile,$startdate,$enddate,$location,$bookingstatus,$totalprice);
 if ($status) {
-    header("location: ../view/userhome.php");
+    header("location: ../view/bookinghistory.php");
 } else {
     echo "Booking Error";
 }

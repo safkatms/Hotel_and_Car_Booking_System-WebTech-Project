@@ -67,7 +67,7 @@ $carbookinghistory = CarBookingHistory();
                                             <?= $hotelbookinghistory[$i]['Status'] ?>
                                         </td>
                                         <td>
-                                            <a href="hotelbooking.php?id=<?= $hotelbookinghistory[$i]['RoomTypeID']  ?>"> <input type="button" value="Select"> </a>
+                                            <a href="viewhotelbooking.php?id=<?= $hotelbookinghistory[$i]['BookingID']  ?>"> <input type="button" value="Select"> </a>
                                         </td>
                                     </tr>
                                 <?php } ?>
@@ -116,7 +116,7 @@ $carbookinghistory = CarBookingHistory();
                                             <?= $carbookinghistory[$i]['Status'] ?>
                                         </td>
                                         <td>
-                                            <a href="carbooking.php?id=<?= $carbookinghistory[$i]['CarID']  ?>"> <input type="button" value="Select"> </a>
+                                            <a href="viewcarbooking.php?id=<?= $carbookinghistory[$i]['BookingID']  ?>"> <input type="button" value="Select"> </a>
                                         </td>
                                     </tr>
                                 <?php } ?>
