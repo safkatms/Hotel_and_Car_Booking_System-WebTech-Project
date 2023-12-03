@@ -9,7 +9,7 @@
 <body>
     <?php include_once('headerpublic.php');?>
     <section style="display: flex;justify-content: center;">
-    <form method="post" action="../Controller/usersignupcheck.php" enctype="">
+    <form method="post" action="../Controller/usersignupcheck.php" enctype="" onsubmit="return userSignUp();">
         
         <fieldset style="width: 350px; ">
             <Table>
@@ -109,7 +109,7 @@
                         <input type="reset" value="Clear">
                     </td>
                     <td>
-                        <input type="submit" value="Sign up" onclick="return userSignUp();">
+                        <input type="submit" value="Sign up" >
                     </td>
                 </tr>
                 <tr>

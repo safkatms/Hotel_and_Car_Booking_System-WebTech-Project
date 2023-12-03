@@ -9,7 +9,7 @@
 
     <section style="display: flex; justify-content: center;">
 
-            <form method="post" action="../Controller/signincheck.php" enctype="">
+            <form method="post" action="../Controller/signincheck.php" enctype="" onsubmit="return validateLogin();">
                 <fieldset>
                 <Table>
                     <tr>
@@ -40,7 +40,7 @@
                     <tr>
                         <td></td>
                         <td >
-                            <input type="submit" value="Sign in" onclick="return validateLogin();">
+                            <input type="submit" value="Sign in">
                         </td>
                     </tr>
                     <tr>

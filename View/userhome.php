@@ -7,7 +7,7 @@ require_once '../Controller/sessioncheck.php';
 
 <head>
     <title>StayDriveGo Booking</title>
-    <script src="../Asset/searchingScript.js"></script></script>
+    <script src="../Asset/userScript.js"></script></script>
 </head>
 
 <body>
@@ -22,7 +22,7 @@ require_once '../Controller/sessioncheck.php';
                     <h1>Welcome to StayDriveGo</h1>
                 </section>
                 <section>
-                    <form action="hotelsearching.php" method="get" enctype="">
+                    <form action="hotelsearching.php" method="get" enctype="" onsubmit="return hotelSearch();">
                         <fieldset>
                             <legend>BOOK HOTEL</legend>
                             <table>
@@ -59,7 +59,7 @@ require_once '../Controller/sessioncheck.php';
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="submit" value="Search" id="button" onclick="return hotelSearch();">
+                                        <input type="submit" value="Search" id="button">
                                     </td>
                                 </tr>
                             </table>
@@ -68,7 +68,7 @@ require_once '../Controller/sessioncheck.php';
                 </section>
                 <!-- Car Booking Form -->
                 <section>
-                    <form action="carsearching.php" method="get" enctype="">
+                    <form action="carsearching.php" method="get" enctype="" onsubmit="return carSearch();">
                         <fieldset>
                             <legend>BOOK CAR</legend>
                             <table>
@@ -87,52 +87,10 @@ require_once '../Controller/sessioncheck.php';
                                         </select>
                                     </td>
                                     <td>
-                                        Pick-up date: <input type="date" name="pickup_date" id="pickup_date" min="<?= date('Y-m-d'); ?>" value="" required>
+                                        Pick-up date: <input type="date" name="pickup_date" id="pickup_date" min="<?= date('Y-m-d'); ?>" value="" >
                                     </td>
                                     <td>
-                                        Drop-off date: <input type="date" name="dropoff_date" id="dropoff_date" min="<?= date('Y-m-d'); ?>" value="" required>
-                                    </td>
-                                    <td>
-                                        <input type="submit" value="Search">
-                                    </td>
-                                </tr>
-                            </table>
-                        </fieldset>
-                    </form>
-                </section>
-                <!-- Bus Booking Form -->
-                <section>
-                    <form action="path_to_bus_booking_script.php" method="post">
-                        <fieldset>
-                            <legend>BOOK BUS TICKET</legend>
-                            <table>
-                                <tr>
-                                    <td>Departure Location:
-                                        <select name="departure_location">
-                                            <option value="Dhaka">Dhaka</option>
-                                                <option value="Chittagong">Chittagong</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Barisal">Barisal</option>
-                                                <option value="Khulna">Khulna</option>
-                                                <option value="Mymanshingh">Mymanshingh</option>
-                                                <option value="Rajshahi">Rajshahi</option>
-                                                <option value="Rangpur">Rangpur</option>
-                                        </select>
-                                    </td>
-                                    <td>Arrival Location:
-                                        <select name="arrival_location">
-                                        <option value="Dhaka">Dhaka</option>
-                                                <option value="Chittagong">Chittagong</option>
-                                                <option value="Sylhet">Sylhet</option>
-                                                <option value="Barisal">Barisal</option>
-                                                <option value="Khulna">Khulna</option>
-                                                <option value="Mymanshingh">Mymanshingh</option>
-                                                <option value="Rajshahi">Rajshahi</option>
-                                                <option value="Rangpur">Rangpur</option>
-                                        </select>
-                                    </td>
-                                    <td>
-                                        Journey date: <input type="date" name="journey_date">
+                                        Drop-off date: <input type="date" name="dropoff_date" id="dropoff_date" min="<?= date('Y-m-d'); ?>" value="" >
                                     </td>
                                     <td>
                                         <input type="submit" value="Search">

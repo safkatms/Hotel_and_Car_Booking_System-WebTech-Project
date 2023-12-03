@@ -7,7 +7,7 @@
 <body>
     <?php include_once('headerpublic.php');?>
     <section style="display: flex;justify-content: center;">
-    <form method="post" action="../Controller/ownersignupcheck.php" enctype="">
+    <form method="post" action="../Controller/ownersignupcheck.php" enctype="" onsubmit="return ownerSignUp();">
         <fieldset style="width: 350px; ">
             <Table>
                 <tr>
@@ -108,7 +108,7 @@
                         <input type="reset" value="Clear">
                     </td>
                     <td >
-                        <input type="submit" value="Sign up" onclick="return ownerSignUp();">
+                        <input type="submit" value="Sign up">
                     </td>
                 </tr>
                 <tr>
