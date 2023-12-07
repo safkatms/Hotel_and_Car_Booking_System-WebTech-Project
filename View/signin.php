@@ -9,7 +9,7 @@
 
     <section style="display: flex; justify-content: center;">
 
-            <form method="post" action="../Controller/signincheck.php" enctype="" onsubmit="return validateLogin();">
+            <form method="post" action="../Controller/signincheck.php" enctype="" onsubmit="return checkCredentials();">
                 <fieldset>
                 <Table>
                     <tr>
@@ -20,7 +20,7 @@
                             Username:
                         </td>
                         <td>
-                            <input type="text" name="Username" value="" id="Username"><br>
+                            <input type="text" name="Username" value="" id="Username" onblur="checkUsername()"><br>
                         </td>
                     </tr>
                     <tr>
@@ -29,6 +29,14 @@
                         </td>
                         <td>
                             <input type="password" name="Password" value="" id="Password"><br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            
+                        </td>
+                        <td>
+                            <h6 id="message"></h6>
                         </td>
                     </tr>
                     <tr>

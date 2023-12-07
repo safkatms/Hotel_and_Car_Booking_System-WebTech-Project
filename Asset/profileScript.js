@@ -20,24 +20,24 @@ function editProfile() {
 
     // Validate First Name
     if (uppercase.indexOf(firstname.charAt(0)) === -1) {
-        alert("First Name should start with a capital letter.");
+        document.getElementById("fname").innerHTML="First Name should start with a capital letter.";
         return false;
     }
     for (let i = 0; i < firstname.length; i++) {
         if (alphabets.indexOf(firstname[i]) === -1) {
-            alert("First Name should contain only alphabetic characters.");
+            document.getElementById("fname").innerHTML="First Name should contain only alphabetic characters.";
             return false;
         }
     }
 
     // Validate Last Name
     if (uppercase.indexOf(lastname.charAt(0)) === -1) {
-        alert("Last Name should start with a capital letter.");
+        document.getElementById("lname").innerHTML="Last Name should start with a capital letter.";
         return false;
     }
     for (let i = 0; i < lastname.length; i++) {
         if (alphabets.indexOf(lastname[i]) === -1) {
-            alert("Last Name should contain only alphabetic characters.");
+            document.getElementById("lname").innerHTML="Last Name should contain only alphabetic characters.";
             return false;
         }
     }
@@ -46,18 +46,18 @@ function editProfile() {
 
     // Validate Email
     if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
-        alert("Email should include '@' and '.' symbols.");
+        document.getElementById("eid").innerHTML="Email should include '@' and '.' symbols.";
         return false;
     }
 
     // Validate Mobile Number
     if (mobile.length !== 11 || !validPrefixes.includes(mobile.substring(0, 3))) {
-        alert("Invalid mobile number. It should be 11 digits long and start with '017', '016', '018', '015', '019', '013'.");
+        document.getElementById("mobile").innerHTML="Invalid mobile number. It should be 11 digits long and start with '017', '016', '018', '015', '019', '013'.";
         return false;
     }
     for (let i = 0; i < mobile.length; i++) {
         if (numbers.indexOf(mobile[i]) === -1) {
-            alert("Mobile number should contain only numbers.");
+            document.getElementById("mobile").innerHTML="Mobile number should contain only numbers.";
             return false;
         }
     }
@@ -92,7 +92,7 @@ function changePassword() {
     // Validate Password
     let hasUppercase = false, hasLowercase = false, hasNumber = false, hasSpecial = false;
     if (newpassword.length < 6) {
-        alert("Password should be at least 6 characters.");
+        document.getElementById("cpass").innerHTML="Password should be at least 6 characters.";
         return false;
     }
     for (let i = 0; i < newpassword.length; i++) {
@@ -103,13 +103,13 @@ function changePassword() {
         if (specialCharacters.indexOf(char) !== -1) hasSpecial = true;
     }
     if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecial) {
-        alert("Password must include uppercase, lowercase, number, and special character.");
+        document.getElementById("cpass").innerHTML="Password must include uppercase, lowercase, number, and special character.";
         return false;
     }
 
     // Check Password Confirmation
     if (newpassword !== conpassword) {
-        alert("Passwords do not match.");
+        document.getElementById("cpass").innerHTML="Passwords do not match.";
         return false;
     }
 

@@ -11,9 +11,8 @@ $bookingInfo = ViewCarBooking( $bookingID );
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StayDriveGo Booking</title>
+    <script src="../Asset/userScript.js"></script>
 </head>
 
 <body>
@@ -69,9 +68,17 @@ $bookingInfo = ViewCarBooking( $bookingID );
                         <td>Total Price:</td>
                         <td><input type="text" name="TotalPrice"  value="<?=$bookingInfo['TotalPrice']?>" readonly></td>
                     </tr>
+                    <input type="hidden" name="bookingID" id="bookingID" value="<?= $bookingInfo['BookingID']?>">
                 </table>
-                <hr>
-                <a href="carinvoice.php?id=<?= $bookingInfo['BookingID']?>"> <input type="button" value="Print Invoice"> </a>
+                <?php if($bookingInfo['Status']=="Confirmed"){?>
+                    <hr>
+                    <a href="carinvoice.php?id=<?= $bookingInfo['BookingID']?>"> <input type="button" value="Print Invoice"> </a>
+                <?php }else if($bookingInfo['Status']=="Pending"){?>
+                    <hr>
+                    <a href="../Controller/carbookingcancel.php?id=<?= $bookingInfo['BookingID']?>"> <input type="button" value="Cancel Booking" onclick="cancelCarBooking()"> </a>
+                <?php }else{?>
+                    
+                <?php }?>
             </form>
 
                 

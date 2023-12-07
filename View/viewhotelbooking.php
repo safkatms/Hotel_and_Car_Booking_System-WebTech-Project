@@ -12,9 +12,8 @@ $bookingInfo = ViewHotelBooking($bookingID);
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StayDriveGo Booking</title>
+    <script src="../Asset/userScript.js"></script>
 </head>
 
 <body>
@@ -73,13 +72,19 @@ $bookingInfo = ViewHotelBooking($bookingID);
                     <tr>
                         <td>Status:</td>
                         <td> <input type="text" name="Status" value="<?=$bookingInfo['Status']?>" readonly> </td>
-                        <td></td>
+                        <td><input type="hidden" name="bookingID" id="bookingID" value="<?= $bookingInfo['BookingID']?>"></td>
                         <td></td>
                     </tr>
                 </table>
-                <hr>
-                <a href="hotelinvoice.php?id=<?= $bookingInfo['BookingID']?>"> <input type="button" value="Print Invoice"> </a>
-
+                <?php if($bookingInfo['Status']=="Confirmed"){?>
+                    <hr>
+                    <a href="hotelinvoice.php?id=<?= $bookingInfo['BookingID']?>"> <input type="button" value="Print Invoice"> </a>
+                <?php }else if($bookingInfo['Status']=="Pending"){?>
+                    <hr>
+                    <a href="../Controller/hotelbookingcancel.php?id=<?= $bookingInfo['BookingID']?>"> <input type="button" value="Cancel Booking" onclick="cancelHotelBooking()"> </a>
+                <?php }else{?>
+                    
+                <?php }?>
             </form>
 
 

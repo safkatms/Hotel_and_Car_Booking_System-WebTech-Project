@@ -2,40 +2,42 @@
 session_start();
 require_once("../Model/bookingmodel.php");
 
-
+// Initialize variables
 $bookingstatus = 'Pending';
-
 $carid = $_REQUEST['CarID'];
-
 $carOwnername = $_REQUEST['Ownername'];
-
 $brand = $_REQUEST['Brand'];
-
 $model = $_REQUEST['Model'];
-
-$totalprice = $_REQUEST['DailyRate'];
-
+$dailyRate = $_REQUEST['DailyRate'];
 $name = $_REQUEST['UserFullName'];
-
 $email = $_REQUEST['UserEmail'];
-
 $mobile = $_REQUEST['UserMobile'];
-
 $startdate = $_REQUEST['PickupDate'];
-
 $enddate = $_REQUEST['DropoffDate'];
-
 $location = $_REQUEST['Location'];
 
+// Convert dates to DateTime objects for comparison
+$pickupDateTime = new DateTime($startdate);
+$dropoffDateTime = new DateTime($enddate);
 
+// Calculate the difference in days
+$interval = $pickupDateTime->diff($dropoffDateTime);
+$numberOfDays = $interval->days;
 
-
-
-
-
-$status = CarBookingConfirm($carid,$carOwnername,$brand,$model,$name,$email,$mobile,$startdate,$enddate,$location,$bookingstatus,$totalprice);
-if ($status) {
-    header("location: ../view/bookinghistory.php");
+// Validate if drop-off date is after pick-up date
+if($pickupDateTime >= $dropoffDateTime) {
+    echo "Drop-off date must be after the Pick-up date.";
 } else {
-    echo "Booking Error";
+    // Calculate total price
+    $totalprice = $numberOfDays * $dailyRate;
+
+    // Call the function to confirm booking
+    $status = CarBookingConfirm($carid, $carOwnername, $brand, $model, $name, $email, $mobile, $startdate, $enddate, $location, $bookingstatus, $totalprice);
+
+    if ($status) {
+        header("location: ../view/bookinghistory.php");
+    } else {
+        echo "Booking Error";
+    }
 }
+?>

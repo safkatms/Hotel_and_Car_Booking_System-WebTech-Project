@@ -27,12 +27,38 @@ function signup($firstname, $lastname, $username, $email, $mobile, $dob, $gender
     }
 }
 
+function checkEmailAvailability($email)
+{
+    $con = getConnection();
+    $sql = "SELECT * FROM usersinfo where email='{$email}'";
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count == 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function checkUsernameAvailability($username)
+{
+    $con = getConnection();
+    $sql = "SELECT * FROM signin_info where username='{$username}'";
+    $result = mysqli_query($con, $sql);
+    $count = mysqli_num_rows($result);
+    if ($count == 1) {
+        return false;
+    } else {
+        return true;
+    }
+}
+
 
 function signinUser($username, $password)
 {
     $usertype = "user";
     $con = getConnection();
-    $sql = "SELECT * FROM signin_info WHERE username='{$username}' AND password='{$password}' AND user_type='{$usertype}'";
+    $sql = "SELECT * FROM signin_info WHERE username='{$username}' AND password='{$password}' AND user_type='{$usertype}' AND banstatus='0'";
     $sql1 = "SELECT * FROM usersinfo WHERE username='{$username}' AND password='{$password}'";
     $result = mysqli_query($con, $sql);
     $result1 = mysqli_query($con, $sql1);
@@ -62,6 +88,24 @@ function signinUser($username, $password)
         return false;
     }
 }
+
+function verifyUserCredentials($username, $password)
+{
+    $con = getConnection();
+    $sql = "SELECT * FROM signin_info WHERE username='{$username}'";
+    $result = mysqli_query($con, $sql);
+    if ($result) {
+        $userData = mysqli_fetch_assoc($result);
+        if ($userData) {
+            // Directly comparing the plain text password - not recommended for security reasons
+            if ($password === $userData['password'] && $userData['banstatus']==0) {
+                return true; // Password is correct
+            }
+        }
+    }
+    return false; // Username not found or password is incorrect
+}
+
 
 
 

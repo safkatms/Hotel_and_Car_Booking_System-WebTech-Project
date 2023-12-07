@@ -11,12 +11,11 @@ $bookingInfo = CarBooking( $CarID );
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../Asset/userScript.js"></script>
     <title>StayDriveGo Booking</title>
 </head>
 
-<body>
+<body onload="carBooking()">
     <?php include_once 'header.php'; ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
@@ -24,7 +23,7 @@ $bookingInfo = CarBooking( $CarID );
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">
-            <form action="../Controller/carbookingcheck.php" method="post" enctype="">
+            <form action="../Controller/carbookingcheck.php" method="post" enctype="" onsubmit="return carBooking();">
                 <table style="width:100%">
                     <tr>
                         <td colspan="2">
@@ -49,7 +48,7 @@ $bookingInfo = CarBooking( $CarID );
                     </tr>
                     <tr>
                         <td>Daily Rate:</td>
-                        <td><input type="text" name="DailyRate" id="" value="<?=$bookingInfo['DailyRate']?>" readonly></td>
+                        <td><input type="text" name="DailyRate" id="DailyRate" value="<?=$bookingInfo['DailyRate']?>" readonly></td>
                         <td>Mobile:</td>
                         <td><input type="text" name="UserMobile" id="" value="<?php  if(isset($_SESSION['mobile'])) {echo $_SESSION['mobile'];  }?>" readonly></td>
                     </tr>
@@ -60,15 +59,15 @@ $bookingInfo = CarBooking( $CarID );
                     </tr>
                     <tr>
                         <td>Start Date:</td>
-                        <td><input type="date" name="PickupDate" id="" value="<?php  if(isset($_SESSION['pickup'])) {echo $_SESSION['pickup'];  }?>" readonly></td>
+                        <td><input type="date" name="PickupDate" id="PickupDate" min="<?= date('Y-m-d'); ?>" value="<?php  if(isset($_SESSION['pickup'])) {echo $_SESSION['pickup'];  }?>" onblur="carBooking()"></td>
                         <td>End Date:</td>
-                        <td><input type="date" name="DropoffDate" id="" value="<?php  if(isset($_SESSION['dropoff'])) {echo $_SESSION['dropoff'];  }?>" readonly></td>
+                        <td><input type="date" name="DropoffDate" id="DropoffDate" min="<?= date('Y-m-d'); ?>" value="<?php  if(isset($_SESSION['dropoff'])) {echo $_SESSION['dropoff'];  }?>" onblur="carBooking()"></td>
                     </tr>
                     <tr>
                         <td>Location:</td>
                         <td><input type="text" name="Location" value="<?=$bookingInfo['Location']?>" readonly></td>
                         <td>Total Price:</td>
-                        <td><input type="text" name="TotalPrice"  value="" readonly></td>
+                        <td><input type="text" name="TotalPrice" id="TotalPrice" value="" readonly></td>
                     </tr>
                 </table>
                 <hr>

@@ -13,12 +13,11 @@ $bookingInfo = HotelBooking( $roomID );
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StayDriveGo Booking</title>
+    <script src="../Asset/userScript.js"></script>
+     <title>StayDriveGo Booking</title>
 </head>
 
-<body>
+<body onload="hotelBooking()">
     <?php include_once 'header.php'; ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
@@ -26,7 +25,7 @@ $bookingInfo = HotelBooking( $roomID );
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">
-            <form action="../Controller/hotelbookingcheck.php" method="post" enctype="">
+            <form action="../Controller/hotelbookingcheck.php" method="post" enctype=""  onsubmit="return hotelBooking();">
                 <table style="width:100%">
                     <tr>
                         <td colspan="2">
@@ -53,7 +52,7 @@ $bookingInfo = HotelBooking( $roomID );
                     </tr>
                     <tr>
                         <td>Price per Night:</td>
-                        <td><input type="text" name="PricePerNight" id="" value="<?=$bookingInfo['PricePerNight']?>" readonly></td>
+                        <td><input type="text" name="PricePerNight" id="PricePerNight" value="<?=$bookingInfo['PricePerNight']?>" readonly></td>
                         <td>Mobile:</td>
                         <td><input type="text" name="UserMobile" id="" value="<?php  if(isset($_SESSION['mobile'])) {echo $_SESSION['mobile'];  }?>" readonly></td>
                     </tr>
@@ -64,19 +63,19 @@ $bookingInfo = HotelBooking( $roomID );
                     </tr>
                     <tr>
                         <td>Check-in Date:</td>
-                        <td><input type="date" name="CheckinDate" id="" value="<?php  if(isset($_SESSION['checkin'])) {echo $_SESSION['checkin'];  }?>" readonly></td>
+                        <td><input type="date" name="CheckinDate" id="CheckinDate" min="<?= date('Y-m-d'); ?>" value="<?php  if(isset($_SESSION['checkin'])) {echo $_SESSION['checkin'];  }?>" onblur="hotelBooking()"></td>
                         <td>Check-out Date:</td>
-                        <td><input type="date" name="CheckoutDate" id="" value="<?php  if(isset($_SESSION['checkout'])) {echo $_SESSION['checkout'];  }?>" readonly></td>
+                        <td><input type="date" name="CheckoutDate" id="CheckoutDate" min="<?= date('Y-m-d'); ?>" value="<?php  if(isset($_SESSION['checkout'])) {echo $_SESSION['checkout'];  }?>" onblur="hotelBooking()"></td>
                     </tr>
                     <tr>
                         <td>Number of Room:</td>
-                        <td><input type="number" name="NumberofRoom" id="" min="1"></td>
+                        <td><input type="number" name="NumberofRoom" id="NumberofRoom" min="1" onblur="hotelBooking()"></td>
                         <td>Total Price:</td>
-                        <td><input type="text" name="TotalPrice" id="" value="" readonly></td>
+                        <td><input type="text" name="TotalPrice" id="TotalPrice" value="" readonly></td>
                     </tr>
                     <tr>
                         <td>Available:</td>
-                        <td> <input type="number" name="Available" value="<?=$bookingInfo['AvailableRooms']?>" readonly> </td>
+                        <td> <input type="number" name="Available" id="Available" value="<?=$bookingInfo['AvailableRooms']?>" readonly> </td>
                         <td><input type="hidden" name="HotelAddress" value="<?=$bookingInfo['Address']?>"></td>
                         <td></td>
                     </tr>

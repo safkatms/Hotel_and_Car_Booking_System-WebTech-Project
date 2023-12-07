@@ -64,6 +64,21 @@ function ViewHotelBooking($bookingID)
     }
 }
 
+function CancelHotelBooking($bookingID)
+{
+
+    $con = getConnection();
+    $sql = "UPDATE hotelbooking SET Status='Cancelled' WHERE BookingID='{$bookingID}'";
+
+    $result = mysqli_query($con, $sql);
+    if($result)
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
+
 function CarBooking($CarID)
 {
 
@@ -125,6 +140,21 @@ function ViewCarBooking($bookingID)
         $row = mysqli_fetch_assoc($result);
         return $row;
     } else {
+        return false;
+    }
+}
+
+function CancelCarBooking($bookingID)
+{
+
+    $con = getConnection();
+    $sql = "UPDATE carbooking SET Status='Cancelled' WHERE BookingID='{$bookingID}'";
+
+    $result = mysqli_query($con, $sql);
+    if($result)
+    {
+        return true;
+    }else{
         return false;
     }
 }

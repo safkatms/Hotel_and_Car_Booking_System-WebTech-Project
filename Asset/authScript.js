@@ -24,62 +24,62 @@ function userSignUp() {
     let validUsernameChars = "abcdefghijklmnopqrstuvwxyz0123456789_";
     let alphabets = uppercase + lowercase;
 
-    // Check if all fields are filled
     if (!firstname || !lastname || !username || !email || !password || !conpassword || !mobile || !dob || !gender) {
         alert("All fields must be filled.");
         return false;
     }
+    
 
     // Validate First Name
     if (uppercase.indexOf(firstname.charAt(0)) === -1) {
-        alert("First Name should start with a capital letter.");
+        document.getElementById("fname").innerHTML="First Name should start with a capital letter.";
         return false;
     }
     for (let i = 0; i < firstname.length; i++) {
         if (alphabets.indexOf(firstname[i]) === -1) {
-            alert("First Name should contain only alphabetic characters.");
+            document.getElementById("fname").innerHTML="First Name should contain only alphabetic characters.";
             return false;
         }
     }
 
     // Validate Last Name
     if (uppercase.indexOf(lastname.charAt(0)) === -1) {
-        alert("Last Name should start with a capital letter.");
+        document.getElementById("lname").innerHTML="Last Name should start with a capital letter.";
         return false;
     }
     for (let i = 0; i < lastname.length; i++) {
         if (alphabets.indexOf(lastname[i]) === -1) {
-            alert("Last Name should contain only alphabetic characters.");
+            document.getElementById("lname").innerHTML="Last Name should contain only alphabetic characters.";
             return false;
         }
     }
 
     // Validate Username
     if (username.length < 6) {
-        alert("Username should be at least 6 characters long.");
+        document.getElementById("uid").innerHTML="Username should be at least 6 characters long.";
         return false;
     }
     for (let i = 0; i < username.length; i++) {
         if (validUsernameChars.indexOf(username[i]) === -1) {
-            alert("Username should contain only lowercase letters, numbers, and underscores.");
+            document.getElementById("uid").innerHTML="Username should contain only lowercase letters, numbers, and underscores.";
             return false;
         }
     }
 
     // Validate Email
     if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
-        alert("Email should include '@' and '.' symbols.");
+        document.getElementById("eid").innerHTML="Email should include '@' and '.' symbols.";
         return false;
     }
 
     // Validate Mobile Number
     if (mobile.length !== 11 || !validPrefixes.includes(mobile.substring(0, 3))) {
-        alert("Invalid mobile number. It should be 11 digits long and start with '017', '016', '018', '015', '019', '013'.");
+        document.getElementById("m").innerHTML="Invalid mobile number. It should be 11 digits long and start with '017', '016', '018', '015', '019', '013'.";
         return false;
     }
     for (let i = 0; i < mobile.length; i++) {
         if (numbers.indexOf(mobile[i]) === -1) {
-            alert("Mobile number should contain only numbers.");
+            document.getElementById("m").innerHTML="Mobile number should contain only numbers.";
             return false;
         }
     }
@@ -87,7 +87,7 @@ function userSignUp() {
     // Validate Password
     let hasUppercase = false, hasLowercase = false, hasNumber = false, hasSpecial = false;
     if (password.length < 6) {
-        alert("Password should be at least 6 characters.");
+        document.getElementById("pass").innerHTML="Password should be at least 6 characters.";
         return false;
     }
     for (let i = 0; i < password.length; i++) {
@@ -98,13 +98,13 @@ function userSignUp() {
         if (specialCharacters.indexOf(char) !== -1) hasSpecial = true;
     }
     if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecial) {
-        alert("Password must include uppercase, lowercase, number, and special character.");
+        document.getElementById("pass").innerHTML="Password must include uppercase, lowercase, number, and special character.";
         return false;
     }
 
     // Check Password Confirmation
     if (password !== conpassword) {
-        alert("Passwords do not match.");
+        document.getElementById("cpass").innerHTML="Passwords do not match.";
         return false;
     }
 
@@ -155,54 +155,54 @@ function ownerSignUp() {
 
     // Validate First Name
     if (uppercase.indexOf(firstname.charAt(0)) === -1) {
-        alert("First Name should start with a capital letter.");
+        document.getElementById("fname").innerHTML="First Name should start with a capital letter.";
         return false;
     }
     for (let i = 0; i < firstname.length; i++) {
         if (alphabets.indexOf(firstname[i]) === -1) {
-            alert("First Name should contain only alphabetic characters.");
+            document.getElementById("fname").innerHTML="First Name should contain only alphabetic characters.";
             return false;
         }
     }
 
     // Validate Last Name
     if (uppercase.indexOf(lastname.charAt(0)) === -1) {
-        alert("Last Name should start with a capital letter.");
+        document.getElementById("lname").innerHTML="Last Name should start with a capital letter.";
         return false;
     }
     for (let i = 0; i < lastname.length; i++) {
         if (alphabets.indexOf(lastname[i]) === -1) {
-            alert("Last Name should contain only alphabetic characters.");
+            document.getElementById("lname").innerHTML="Last Name should contain only alphabetic characters.";
             return false;
         }
     }
 
     // Validate Username
     if (username.length < 6) {
-        alert("Username should be at least 6 characters long.");
+        document.getElementById("uid").innerHTML="Username should be at least 6 characters long.";
         return false;
     }
     for (let i = 0; i < username.length; i++) {
         if (validUsernameChars.indexOf(username[i]) === -1) {
-            alert("Username should contain only lowercase letters, numbers, and underscores.");
+            document.getElementById("uid").innerHTML="Username should contain only lowercase letters, numbers, and underscores.";
             return false;
         }
     }
 
     // Validate Email
     if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
-        alert("Email should include '@' and '.' symbols.");
+        document.getElementById("eid").innerHTML="Email should include '@' and '.' symbols.";
         return false;
     }
 
     // Validate Mobile Number
     if (mobile.length !== 11 || !validPrefixes.includes(mobile.substring(0, 3))) {
-        alert("Invalid mobile number. It should be 11 digits long and start with '017', '016', '018', '015', '019', '013'.");
+        document.getElementById("mobile").innerHTML="Invalid mobile number. It should be 11 digits long and start with '017', '016', '018', '015', '019', '013'.";
         return false;
     }
     for (let i = 0; i < mobile.length; i++) {
         if (numbers.indexOf(mobile[i]) === -1) {
-            alert("Mobile number should contain only numbers.");
+            document.getElementById("mobile").innerHTML="Mobile number should contain only numbers.";
             return false;
         }
     }
@@ -210,7 +210,7 @@ function ownerSignUp() {
     // Validate Password
     let hasUppercase = false, hasLowercase = false, hasNumber = false, hasSpecial = false;
     if (password.length < 6) {
-        alert("Password should be at least 6 characters.");
+        document.getElementById("pass").innerHTML="Password should be at least 6 characters.";
         return false;
     }
     for (let i = 0; i < password.length; i++) {
@@ -221,13 +221,13 @@ function ownerSignUp() {
         if (specialCharacters.indexOf(char) !== -1) hasSpecial = true;
     }
     if (!hasUppercase || !hasLowercase || !hasNumber || !hasSpecial) {
-        alert("Password must include uppercase, lowercase, number, and special character.");
+        document.getElementById("pass").innerHTML="Password must include uppercase, lowercase, number, and special character.";
         return false;
     }
 
     // Check Password Confirmation
     if (password !== conpassword) {
-        alert("Passwords do not match.");
+        document.getElementById("cpass").innerHTML="Passwords do not match.";
         return false;
     }
 
@@ -239,18 +239,6 @@ function ownerSignUp() {
     return true;
 }
 
-
-function validateLogin() {
-    let username = document.getElementById("Username").value;
-    let password = document.getElementById("Password").value;
-
-    if (username === "" || password === "") {
-        alert("Username and Password must not be empty!");
-        return false; // Prevents form submission
-    }
-
-    return true; // Allows form submission
-}
 
 
 
@@ -270,3 +258,87 @@ function showPassword() {
     }
 
 }
+
+function checkAvailability() {
+    let email = document.getElementById('Email').value;
+    let username = document.getElementById('Username').value;
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '../Controller/username&emailcheck.php', true); 
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                let response = JSON.parse(this.responseText);
+                document.getElementById('eid').innerHTML = response.emailAvailability || '';
+                document.getElementById('uid').innerHTML = response.usernameAvailability || '';
+                
+            } else {
+                console.error('HTTP error:', this.status);
+            }
+        }
+    };
+
+    xhttp.send('email=' + email + '&username=' + username);
+}
+
+function checkUsername() {
+    let username = document.getElementById('Username').value;
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '../Controller/usernamecheck.php', true); 
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                document.getElementById('message').innerHTML =this.responseText;
+                
+            } else {
+                console.error('HTTP error:', this.status);
+            }
+        }
+    };
+
+    xhttp.send('username=' + username);
+}
+
+
+function checkCredentials() {
+    let username = document.getElementById('Username').value;
+    let password = document.getElementById('Password').value;
+    let data = {
+        'username': username,
+        'password': password
+    };
+
+    let input =JSON.stringify(data);
+
+    if (username === "" || password === "") {
+        document.getElementById('message').innerHTML = "Username and Password must not be empty!";
+        return false;
+    }
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '../Controller/credentialcheck.php', true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                let response = JSON.parse(this.responseText);
+                alert(response.message);   
+            } else {
+                console.error('HTTP error:', this.status);
+            }
+        }
+    };
+
+    xhttp.send('input='+input);
+}
+
+
+
+
+

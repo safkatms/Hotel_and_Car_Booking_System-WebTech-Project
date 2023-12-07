@@ -29,6 +29,14 @@
                 </tr>
                 <tr>
                     <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="fname"></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Lastname:
                     </td>
                     <td>
@@ -37,10 +45,26 @@
                 </tr>
                 <tr>
                     <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="lname"></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Username:
                     </td>
                     <td>
-                        <input type="text" name="Username" value="" id="Username"><br>
+                    <input type="text" name="Username" value="" id="Username" onblur="checkAvailability()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="uid"></h6>
                     </td>
                 </tr>
                 <tr>
@@ -48,7 +72,15 @@
                         Email:
                     </td>
                     <td>
-                        <input type="email" name="Email" value="" id="Email"><br>
+                        <input type="email" name="Email" value="" id="Email" onblur="checkAvailability()">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="eid"></h6>
                     </td>
                 </tr>
                 <tr>
@@ -62,10 +94,26 @@
                 </tr>
                 <tr>
                     <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="mobile"></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Date of Birth:
                     </td>
                     <td>
                         <input type="date" name="DOB" value="" id="DOB"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="dob"></h6>
                     </td>
                 </tr>
                 <tr>
@@ -78,6 +126,14 @@
                 </tr>
                 <tr>
                     <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="gender"></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Password:
                     </td>
                     <td>
@@ -86,10 +142,26 @@
                 </tr>
                 <tr>
                     <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="pass"></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
                         Confirm Password:
                     </td>
                     <td>
                         <input type="password" name="ConPassword" value="" id="ConPassword"><br>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        
+                    </td>
+                    <td>
+                        <h6 id="cpass"></h6>
                     </td>
                 </tr>
                 <tr>

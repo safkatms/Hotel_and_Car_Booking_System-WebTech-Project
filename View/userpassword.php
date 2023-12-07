@@ -18,7 +18,7 @@ require_once('../Model/usermodel.php');
     <section style="display: flex; justify-content: center;">
         <div style="width: 450px;display: flex;height: auto;">
             <fieldset style="width: 100%;">
-            <form action="../Controller/userchangepasswordcheck.php" method="post" enctype="">
+            <form action="../Controller/userchangepasswordcheck.php" method="post" enctype="" onsubmit="return changePassword();">
             <table>
                     <tr>
                         <td>
@@ -46,6 +46,13 @@ require_once('../Model/usermodel.php');
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                        </td>
+                        <td>
+                            <h6 id="cpass"></h6>
+                        </td>
+                    </tr>
+                    <tr>
                         <td></td>
                         <td>
                             <input type="checkbox" name="ShowPassword" id="" value="" onclick="showPassword()">Show Password
@@ -53,7 +60,7 @@ require_once('../Model/usermodel.php');
                     </tr>
                     <tr>
                         <td>
-                            <input type="submit" value="Save" onclick="return changePassword();">
+                            <input type="submit" value="Save" >
                             <a href="useraccount.php"><input type="button" value="Back"></a>
                         </td>
                         <td>

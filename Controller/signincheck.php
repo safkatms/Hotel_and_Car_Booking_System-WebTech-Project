@@ -19,7 +19,7 @@
             $_SESSION["flag"] = "true";
             header("location: ../view/hotelownerhome.php");
          }else{
-             echo "invaid user!";
+             echo "Password incorrect";
          }
      }
 ?>
