@@ -1,17 +1,20 @@
 <?php
 require_once '../Controller/sessioncheck.php';
-require_once '../Model/searchingmodel.php'; 
+require_once '../Model/searchingmodel.php';
 
+$error_message = '';
 if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
-    
     $city = $_GET['city'];
     $checkin = $_GET['checkin'];
     $checkout = $_GET['checkout'];
     $room = $_GET['room'];
+
     if ($checkin == $checkout) {
         $error_message = "Insert different check-out date.";
     } else {
-        $hotels = HotelSearch($city, $room, $checkin, $checkout);
+        // Assuming the HotelSearch function can handle empty sortOrder
+        $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : '';
+        $hotels = HotelSearch($city, $room, $checkin, $checkout, $sortOrder);
     }
 } else {
     header('Location: userhome.php');
@@ -25,8 +28,8 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
 <html>
 
 <head>
-   <title>StayDriveGo Booking</title>
-   <script src="../Asset/searchingScript.js"></script>
+    <title>StayDriveGo Booking</title>
+    <script src="../Asset/userScript.js"></script>
 </head>
 
 <body>
@@ -39,7 +42,7 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
             <fieldset style="width: 100%;">
 
                 <section>
-                <form action="" method="get" enctype="">
+                    <form action="" method="get" enctype=""  onsubmit="return hotelSearch();">
                         <fieldset>
                             <legend>MODIFY SEARCH</legend>
                             <table>
@@ -60,13 +63,13 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
                                     </td>
                                     <td>
                                         Check in: <input type="date" name="checkin" id="checkin" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkin'])) {
-                                                                                                                            echo $_SESSION['checkin'];
-                                                                                                                        } ?>" >
+                                                                                                                                        echo $_SESSION['checkin'];
+                                                                                                                                    } ?>">
                                     </td>
                                     <td>
                                         Check out: <input type="date" name="checkout" id="checkout" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['checkout'])) {
-                                                                                                                                echo $_SESSION['checkout'];
-                                                                                                                            } ?>" >
+                                                                                                                                            echo $_SESSION['checkout'];
+                                                                                                                                        } ?>">
                                     </td>
                                     <td>Room:
                                         <select name="room" id="room">
@@ -82,53 +85,63 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
 
                                     </td>
                                     <td>
-                                        <input type="submit" value="Search" onclick="return hotelSearch();">
+                                        <input type="submit" value="Search">
                                     </td>
                                 </tr>
                             </table>
 
                         </fieldset>
                     </form>
-                    <?php if (!empty($hotels)) { ?>
-                        <table border="1" style="width: 100%;">
-                            <tr>
-                                <th>Hotel Name</th>
-                                <th>City</th>
-                                <th>Room Type</th>
-                                <th>Available Rooms</th>
-                                <th>Price Per Night</th>
-                                <th>Actions</th>
-                            </tr>
-
-                            <?php for ($i = 0; $i < count($hotels); $i++) { ?>
+                    <fieldset>
+                        Sort By: <select name="sort" id="sort" onchange="sortHotels()">
+                            <option value="" selected>Default</option>
+                            <option value="price_high_to_low">Price: High to Low</option>
+                            <option value="price_low_to_high">Price: Low to High</option>
+                        </select>
+                    </fieldset>
+                    <fieldset id="results">
+                        <?php if (!empty($hotels)) { ?>
+                            <table border="1" style="width: 100%;">
                                 <tr>
-
-                                    <td>
-                                        <?= $hotels[$i]['HotelName'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $hotels[$i]['City'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $hotels[$i]['TypeName'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $hotels[$i]['AvailableRooms'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $hotels[$i]['PricePerNight'] ?>
-                                    </td>
-                                    <td>
-                                        <a href="hotelbooking.php?id=<?= $hotels[$i]['RoomTypeID']  ?>"> <input type="button" value="Select"> </a>
-                                    </td>
+                                    <th>Hotel Name</th>
+                                    <th>City</th>
+                                    <th>Room Type</th>
+                                    <th>Available Rooms</th>
+                                    <th>Price Per Night</th>
+                                    <th>Actions</th>
                                 </tr>
-                            <?php } ?>
-                        </table>
-                    <?php } elseif ($checkin == $checkout) {
-                        echo $error_message;
-                    } else { ?>
-                        <p>No hotels found.</p>
-                    <?php } ?>
+
+                                <?php for ($i = 0; $i < count($hotels); $i++) { ?>
+                                    <tr>
+
+                                        <td>
+                                            <?= $hotels[$i]['HotelName'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $hotels[$i]['City'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $hotels[$i]['TypeName'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $hotels[$i]['AvailableRooms'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $hotels[$i]['PricePerNight'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="hotelbooking.php?id=<?= $hotels[$i]['RoomTypeID']  ?>"> <input type="button" value="Select"> </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </table>
+                        <?php } elseif ($checkin == $checkout) {
+                            echo $error_message;
+                        } else { ?>
+                            <p>No hotels found.</p>
+                        <?php } ?>
+                    </fieldset>
+
 
                 </section>
             </fieldset>

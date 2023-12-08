@@ -13,8 +13,8 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
     if ($pickup_date == $dropoff_date) {
         $error_message = "Pick-up and drop-off dates cannot be the same.";
     } else {
-        // Perform the search
-        $cars = CarSearch($pickup_location, $pickup_date, $dropoff_date);
+        $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : '';
+        $cars = CarSearch($pickup_location, $pickup_date, $dropoff_date, $sortOrder);
     }
 } else {
     // Redirect back to search form if criteria are missing
@@ -30,9 +30,8 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>StayDriveGo Booking</title>
+    <script src="../Asset/userScript.js"></script>
 </head>
 
 <body>
@@ -45,13 +44,13 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
             <fieldset style="width: 100%;">
 
                 <section>
-                    <form action="" method="get" enctype="">
+                    <form action="" method="get" enctype="" onsubmit="return carSearch();">
                         <fieldset>
                             <legend>BOOK CAR</legend>
-                            <table>
+                            <table border="1" style="width: 100%;">
                                 <tr>
                                     <td>Pick-up location:
-                                        <select name="pickup_location" required>
+                                        <select name="pickup_location" id="pickup_location" required>
                                             <option value="" <?php if (!isset($_SESSION['location']) || $_SESSION['location'] == "") echo " selected"; ?>>Select a Location</option>
                                             <option value="Dhaka" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Dhaka") echo " selected"; ?>>Dhaka</option>
                                             <option value="Chittagong" <?php if (isset($_SESSION['location']) && $_SESSION['location'] == "Chittagong") echo " selected"; ?>>Chittagong</option>
@@ -64,14 +63,14 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
                                         </select>
                                     </td>
                                     <td>
-                                        Pick-up date: <input type="date" name="pickup_date" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['pickup'])) {
-                                                                                                                            echo $_SESSION['pickup'];
-                                                                                                                        } ?>" required>
+                                        Pick-up date: <input type="date" name="pickup_date" id="pickup_date" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['pickup'])) {
+                                                                                                                                    echo $_SESSION['pickup'];
+                                                                                                                                } ?>" required>
                                     </td>
                                     <td>
-                                        Drop-off date: <input type="date" name="dropoff_date" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['dropoff'])) {
-                                                                                                                            echo $_SESSION['dropoff'];
-                                                                                                                        } ?>" required>
+                                        Drop-off date: <input type="date" name="dropoff_date" id="dropoff_date" min="<?= date('Y-m-d'); ?>" value="<?php if (isset($_SESSION['dropoff'])) {
+                                                                                                                                        echo $_SESSION['dropoff'];
+                                                                                                                                    } ?>" required>
                                     </td>
                                     <td>
                                         <input type="submit" value="Search">
@@ -80,47 +79,55 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
                             </table>
                         </fieldset>
                     </form>
-                    <?php if (!empty($cars)) { ?>
-                        <table border="1">
-                            <tr>
-                                <th>Brand Name</th>
-                                <th>Model</th>
-                                <th>Year</th>
-                                <th>Location</th>
-                                <th>Price Per Day</th>
-                                <th>Actions</th>
-                            </tr>
-
-                            <?php for ($i = 0; $i < count($cars); $i++) { ?>
+                    <fieldset>
+                        Sort By: <select name="sort" id="sort" onchange="sortCars()">
+                            <option value="" selected>Default</option>
+                            <option value="price_high_to_low">Price: High to Low</option>
+                            <option value="price_low_to_high">Price: Low to High</option>
+                        </select>
+                    </fieldset>
+                    <fieldset id="results">
+                        <?php if (!empty($cars)) { ?>
+                            <table border="1">
                                 <tr>
-
-                                    <td>
-                                        <?= $cars[$i]['Barnd'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $cars[$i]['Model'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $cars[$i]['Year'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $cars[$i]['Location'] ?>
-                                    </td>
-                                    <td>
-                                        <?= $cars[$i]['DailyRate'] ?>
-                                    </td>
-                                    <td>
-                                        <a href="carbooking.php?id=<?= $cars[$i]['CarID'] ?>"> <input type="button" value="Select"> </a>
-                                    </td>
+                                    <th>Brand Name</th>
+                                    <th>Model</th>
+                                    <th>Year</th>
+                                    <th>Location</th>
+                                    <th>Price Per Day</th>
+                                    <th>Actions</th>
                                 </tr>
-                            <?php } ?>
-                        </table>
-                    <?php } elseif ($pickup_date == $dropoff_date) {
-                        echo $error_message;
-                    } else { ?>
-                        <p>No Car found.</p>
-                    <?php } ?>
 
+                                <?php for ($i = 0; $i < count($cars); $i++) { ?>
+                                    <tr>
+
+                                        <td>
+                                            <?= $cars[$i]['Barnd'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $cars[$i]['Model'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $cars[$i]['Year'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $cars[$i]['Location'] ?>
+                                        </td>
+                                        <td>
+                                            <?= $cars[$i]['DailyRate'] ?>
+                                        </td>
+                                        <td>
+                                            <a href="carbooking.php?id=<?= $cars[$i]['CarID'] ?>"> <input type="button" value="Select"> </a>
+                                        </td>
+                                    </tr>
+                                <?php } ?>
+                            </table>
+                        <?php } elseif ($pickup_date == $dropoff_date) {
+                            echo $error_message;
+                        } else { ?>
+                            <p>No Car found.</p>
+                        <?php } ?>
+                    </fieldset>
                 </section>
             </fieldset>
         </div>

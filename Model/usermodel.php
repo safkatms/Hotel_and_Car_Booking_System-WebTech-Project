@@ -58,7 +58,7 @@ function signinUser($username, $password)
 {
     $usertype = "user";
     $con = getConnection();
-    $sql = "SELECT * FROM signin_info WHERE username='{$username}' AND password='{$password}' AND user_type='{$usertype}' AND banstatus='0'";
+    $sql = "SELECT * FROM signin_info WHERE username='{$username}' AND password='{$password}' AND user_type='{$usertype}' AND banstatus=0";
     $sql1 = "SELECT * FROM usersinfo WHERE username='{$username}' AND password='{$password}'";
     $result = mysqli_query($con, $sql);
     $result1 = mysqli_query($con, $sql1);
