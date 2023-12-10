@@ -4,14 +4,18 @@
 <head>
    <title>Sign up</title>
    <script src="../Asset/authScript.js"></script>
+   <link rel="stylesheet" href="../Asset/common.css">
 </head>
 
 <body>
+    <header>
     <?php include_once('headerpublic.php');?>
+    </header>
+    
     <section style="display: flex;justify-content: center;">
     <form method="post" action="../Controller/usersignupcheck.php" enctype="" onsubmit="return userSignUp();">
         
-        <fieldset style="width: 350px; ">
+        <fieldset style="width: 450px; ">
             <Table>
                 <tr>
                     <th colspan="2">

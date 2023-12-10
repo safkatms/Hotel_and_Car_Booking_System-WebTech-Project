@@ -38,7 +38,7 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
     <?php include_once 'header.php'; ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
-            <?php include_once 'usermenu.php'; ?>
+            <?php include_once 'menu.php'; ?>
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once("../Model/usermodel.php");
+require_once("../Model/authmodel.php");
 
     $inputJSON= $_POST['input'];
     $input = json_decode($inputJSON, true);
@@ -19,7 +19,6 @@ require_once("../Model/usermodel.php");
             $response['message'] = "Invalid password/Banned user";
         }
 
-        header('Content-Type: application/json');
 
         echo json_encode($response);
     }

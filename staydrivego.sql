@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2023 at 02:36 AM
+-- Generation Time: Nov 05, 2023 at 06:54 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -24,75 +24,13 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carbooking`
---
-
-CREATE TABLE `carbooking` (
-  `BookingID` int(20) NOT NULL,
-  `Username` varchar(50) NOT NULL,
-  `Fullname` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Mobile` varchar(11) NOT NULL,
-  `OwnerUsername` varchar(20) NOT NULL,
-  `CarID` int(20) NOT NULL,
-  `Brand` varchar(50) NOT NULL,
-  `Model` varchar(50) NOT NULL,
-  `StartDate` date NOT NULL,
-  `EndDate` date NOT NULL,
-  `Location` varchar(20) NOT NULL,
-  `TotalPrice` int(10) NOT NULL,
-  `Status` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `carbooking`
---
-
-INSERT INTO `carbooking` (`BookingID`, `Username`, `Fullname`, `Email`, `Mobile`, `OwnerUsername`, `CarID`, `Brand`, `Model`, `StartDate`, `EndDate`, `Location`, `TotalPrice`, `Status`) VALUES
-(16, 'sakib123_', 'Safkat Mahmud', 'safkatmahmudsakib@gmail.com', '01629313025', 'sakib22', 1, 'BMW', 'E30', '2023-12-08', '2023-12-09', 'Dhaka', 10000, 'Confirmed'),
-(17, 'sakib123_', 'Safkat Mahmud', 'safkatmahmudsakib@gmail.com', '01629313025', 'sakib22', 1, 'BMW', 'E30', '2023-12-08', '2023-12-09', 'Dhaka', 10000, 'Confirmed');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `car_info`
---
-
-CREATE TABLE `car_info` (
-  `CarID` int(20) NOT NULL,
-  `OwnerUsername` varchar(50) NOT NULL,
-  `Barnd` varchar(20) NOT NULL,
-  `Model` varchar(10) NOT NULL,
-  `Year` varchar(10) NOT NULL,
-  `Location` varchar(20) NOT NULL,
-  `DailyRate` int(10) NOT NULL,
-  `AvailabilityStatus` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `car_info`
---
-
-INSERT INTO `car_info` (`CarID`, `OwnerUsername`, `Barnd`, `Model`, `Year`, `Location`, `DailyRate`, `AvailabilityStatus`) VALUES
-(1, 'sakib22', 'BMW', 'E30', '2019', 'Dhaka', 10000, 'Available '),
-(2, 'sakib22', 'BMW', 'E30', '2019', 'Dhaka', 50000, 'Available ');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `hotelbooking`
 --
 
 CREATE TABLE `hotelbooking` (
   `BookingID` int(20) NOT NULL,
   `Username` varchar(50) NOT NULL,
-  `Fullname` varchar(50) NOT NULL,
-  `Email` varchar(50) NOT NULL,
-  `Mobile` varchar(11) NOT NULL,
-  `HotelName` varchar(50) NOT NULL,
   `HotelID` int(20) NOT NULL,
-  `HotelAddress` varchar(50) NOT NULL,
-  `RoomTypeName` varchar(20) NOT NULL,
   `RoomTypeID` int(20) NOT NULL,
   `CheckInDate` date NOT NULL,
   `CheckOutDate` date NOT NULL,
@@ -100,15 +38,6 @@ CREATE TABLE `hotelbooking` (
   `TotalPrice` int(30) NOT NULL,
   `Status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `hotelbooking`
---
-
-INSERT INTO `hotelbooking` (`BookingID`, `Username`, `Fullname`, `Email`, `Mobile`, `HotelName`, `HotelID`, `HotelAddress`, `RoomTypeName`, `RoomTypeID`, `CheckInDate`, `CheckOutDate`, `NumberOfRooms`, `TotalPrice`, `Status`) VALUES
-(26, 'sakib123_', 'Safkat Mahmud', 'safkatmahmudsakib@gmail.com', '01629313025', 'Hotel Akash', 1, 'Dhaka', 'Suite', 1, '2023-12-08', '2023-12-09', 1, 5000, 'Confirmed'),
-(27, 'sakib123_', 'Safkat Mahmud', 'safkatmahmudsakib@gmail.com', '01629313025', 'Hotel Akash', 1, 'Dhaka', 'Suite', 1, '2023-12-08', '2023-12-09', 1, 5000, 'Confirmed'),
-(28, 'sakib123_', 'Safkat Mahmud', 'safkatmahmudsakib@gmail.com', '01629313025', 'Hotel Akash', 1, 'Dhaka', 'Suite', 1, '2023-12-08', '2023-12-09', 1, 5000, 'Cancelled');
 
 -- --------------------------------------------------------
 
@@ -182,7 +111,7 @@ CREATE TABLE `roomtype` (
 --
 
 INSERT INTO `roomtype` (`RoomTypeID`, `HotelID`, `TypeName`, `PricePerNight`, `TotalRooms`, `AvailableRooms`) VALUES
-(1, 1, 'Suite', 5000, 5, 2),
+(1, 1, 'Suite', 1000, 5, 2),
 (2, 2, 'Suite', 1000, 5, 2);
 
 -- --------------------------------------------------------
@@ -195,17 +124,26 @@ CREATE TABLE `signin_info` (
   `user_number` int(11) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `user_type` varchar(10) NOT NULL,
-  `banstatus` int(1) NOT NULL DEFAULT 0
+  `user_type` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `signin_info`
 --
 
-INSERT INTO `signin_info` (`user_number`, `username`, `password`, `user_type`, `banstatus`) VALUES
-(13, 'sakib123_', 'Sakib@1', 'user', 0),
-(14, 'sakib123', 'Sakib@1', 'user', 0);
+INSERT INTO `signin_info` (`user_number`, `username`, `password`, `user_type`) VALUES
+(1, 'wasi123_', 'Sakib1!', 'user'),
+(2, 'sakib125', 'Sakib1!', 'user'),
+(3, 'sakib1254', 'Sakib1!', 'car'),
+(4, 'wasi12_', 'Sakib1!', 'user'),
+(5, 'sakib123_', 'Sakib@1', 'user'),
+(6, 'owasi1_', 'Sakib@1', 'user'),
+(7, 'sakib1', 'Sakib@1', 'user'),
+(8, 'sakib22', 'Sakib@1', 'hotel'),
+(9, 'sakib23', 'Sakib@1', 'hotel'),
+(10, 'safkat', 'Sakib@1', 'hotel'),
+(11, 'sakib44', 'Sakib@1', 'hotel'),
+(12, 's1akib', 'Sakib@1', 'hotel');
 
 -- --------------------------------------------------------
 
@@ -229,28 +167,13 @@ CREATE TABLE `usersinfo` (
 --
 
 INSERT INTO `usersinfo` (`firstname`, `lastname`, `username`, `email`, `mobile`, `dob`, `gender`, `password`) VALUES
-('Sakib', 'Safkat', 'sakib123', 'netflix2023scam@gmail.com', '01629313026', '2023-12-06', 'Male', 'Sakib@1'),
-('Safkat', 'Mahmud', 'sakib123_', 'safkatmahmudsakib@gmail.com', '01629313025', '2001-12-31', 'Male', 'Sakib@1');
+('Owasi', 'Soumik', 'owasi1_', 'mohammadowasi70@gmail.com', '01790427288', '2023-10-01', 'Male', 'Sakib1!'),
+('Safkat', 'Mahmud', 'sakib1', 'safkatmahmud@gmail.com', '01630312213', '2023-10-31', 'Male', 'Sakib1!'),
+('Safkat', 'Mahmud', 'sakib123_', 'safkatmahmudsakib@gmail.com', '01629313026', '2001-12-31', 'Male', 'Sakib@1');
 
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `carbooking`
---
-ALTER TABLE `carbooking`
-  ADD PRIMARY KEY (`BookingID`),
-  ADD KEY `fk6` (`CarID`),
-  ADD KEY `fk7` (`Username`),
-  ADD KEY `fk8` (`OwnerUsername`);
-
---
--- Indexes for table `car_info`
---
-ALTER TABLE `car_info`
-  ADD PRIMARY KEY (`CarID`),
-  ADD KEY `fk5` (`OwnerUsername`);
 
 --
 -- Indexes for table `hotelbooking`
@@ -301,22 +224,10 @@ ALTER TABLE `usersinfo`
 --
 
 --
--- AUTO_INCREMENT for table `carbooking`
---
-ALTER TABLE `carbooking`
-  MODIFY `BookingID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
-
---
--- AUTO_INCREMENT for table `car_info`
---
-ALTER TABLE `car_info`
-  MODIFY `CarID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `hotelbooking`
 --
 ALTER TABLE `hotelbooking`
-  MODIFY `BookingID` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `BookingID` int(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `hotel_info`
@@ -334,24 +245,11 @@ ALTER TABLE `roomtype`
 -- AUTO_INCREMENT for table `signin_info`
 --
 ALTER TABLE `signin_info`
-  MODIFY `user_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_number` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables
 --
-
---
--- Constraints for table `carbooking`
---
-ALTER TABLE `carbooking`
-  ADD CONSTRAINT `fk7` FOREIGN KEY (`Username`) REFERENCES `usersinfo` (`username`),
-  ADD CONSTRAINT `fk8` FOREIGN KEY (`OwnerUsername`) REFERENCES `ownersinfo` (`username`);
-
---
--- Constraints for table `car_info`
---
-ALTER TABLE `car_info`
-  ADD CONSTRAINT `fk5` FOREIGN KEY (`OwnerUsername`) REFERENCES `ownersinfo` (`username`);
 
 --
 -- Constraints for table `hotelbooking`

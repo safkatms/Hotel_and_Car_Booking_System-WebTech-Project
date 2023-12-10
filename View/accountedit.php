@@ -1,7 +1,7 @@
 <?php 
     
     require_once('../Controller/sessioncheck.php');
-    require_once('../Model/usermodel.php');
+    require_once('../Model/authmodel.php');
     
     $usersinfo = getUserInfo();
 ?>
@@ -132,7 +132,7 @@
                         
                     </td>
                     <td>
-                    <a href="useraccount.php"><input type="button" value="Back"></a>
+                    <a href="account.php"><input type="button" value="Back"></a>
                     </td>
                 </tr>
                 </table>

@@ -1,7 +1,6 @@
 <?php
 
 require_once('../Controller/sessioncheck.php');
-require_once('../Model/usermodel.php');
 
 ?>
 
@@ -28,7 +27,7 @@ require_once('../Model/usermodel.php');
                         <tr>
                             <td>
                                 <input type="submit" value="Save">
-                                <a href="useraccount.php"><input type="button" value="Back"></a>
+                                <a href="account.php"><input type="button" value="Back"></a>
                             </td>
                             <td>
 

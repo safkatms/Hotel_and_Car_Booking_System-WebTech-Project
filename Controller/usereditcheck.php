@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../Model/usermodel.php";
+require_once "../Model/authmodel.php";
 
 $firstname = $_REQUEST['Firstname'];
 $lastname = $_REQUEST['Lastname'];
@@ -21,7 +21,7 @@ if ($firstname=='' ||$lastname==''  ||$email=='' ||$mobile=='') {
 }  else {
    $status= editUserInfo($firstname, $lastname, $email, $mobile);
    if ($status) {
-    header('location:../View/useraccount.php');
+    header('location:../View/account.php');
    } else {
     echo 'Username or Email Already Taken.';
    }

@@ -1,7 +1,7 @@
 <?php
 
 require_once('../Controller/sessioncheck.php');
-require_once('../Model/usermodel.php');
+require_once('../Model/authmodel.php');
 
 $usersinfo = getUserInfo();
 ?>
@@ -19,7 +19,7 @@ $usersinfo = getUserInfo();
     <?php include_once('header.php'); ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
-            <?php include_once('usermenu.php') ?>
+            <?php include_once('menu.php') ?>
         </div>
        
         <div style="width: 80%;display: flex;height: auto;">
@@ -28,7 +28,7 @@ $usersinfo = getUserInfo();
             <div style="width: 30%;display:flex;  height: auto;">
                     <fieldset style="width: 100%; justify-content: center;">
                         <img src="../Asset/profilePic.jpg" alt="" height="150px" width="150px" >
-                        <a href="userprofilepicture.php">Change Profile Picture</a>
+                        <a href="profilepicture.php">Change Profile Picture</a>
                     </fieldset>
                 </div>
                 <div style="width: 70%;display: flex;height: auto;  ">
@@ -92,10 +92,10 @@ $usersinfo = getUserInfo();
                             </tr>
                             <tr>
                                 <td>
-                                    <a href="useredit.php">Edit Profile</a>
+                                    <a href="accountedit.php">Edit Profile</a>
                                 </td>
                                 <td>
-                                    <a href="userpassword.php">Change password</a>
+                                    <a href="changepassword.php">Change password</a>
                                 </td>
                             </tr>
                         </table>

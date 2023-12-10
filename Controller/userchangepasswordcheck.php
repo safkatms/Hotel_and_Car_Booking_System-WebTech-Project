@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../Model/usermodel.php";
+require_once "../Model/authmodel.php";
 
 $currentpassword = $_REQUEST['Current'];
 $password = $_REQUEST['New'];
@@ -16,7 +16,7 @@ if ($currentpassword == '' || $password == '' || $conpassword == '') {
 } else {
     $status = changeUserPassword($currentpassword, $password);
     if ($status) {
-        header('location:../view/useraccount.php');
+        header('location:../view/account.php');
     } else {
         echo 'Incorrect password.';
     }

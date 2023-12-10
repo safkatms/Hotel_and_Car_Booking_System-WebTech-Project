@@ -3,6 +3,7 @@
 <head>
     <title>Sign in</title>
     <script src="../Asset/authScript.js"></script>
+    <link rel="stylesheet" href="../Asset/common.css">
 </head>
 <body>
     <?php include_once('headerpublic.php');?>

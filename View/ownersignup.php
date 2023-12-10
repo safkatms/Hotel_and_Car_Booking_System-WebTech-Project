@@ -3,12 +3,13 @@
 <head>
    <title>Sign up</title>
    <script src="../Asset/authScript.js"></script>
+   <link rel="stylesheet" href="../Asset/common.css">
 </head>
 <body>
     <?php include_once('headerpublic.php');?>
     <section style="display: flex;justify-content: center;">
     <form method="post" action="../Controller/ownersignupcheck.php" enctype="" onsubmit="return ownerSignUp();">
-        <fieldset style="width: 350px; ">
+        <fieldset style="width: 450px; ">
             <Table>
                 <tr>
                     <th colspan="2"><h2>Sign Up</h2><br></th>
@@ -16,7 +17,7 @@
                 <tr>
                     <td>Service:</td>
                     <td>
-                        <input type="radio" name="Service" value="hotel" id="Hotel">Hotel<input type="radio" name="Service" value="car" id="Car">Car
+                        <input type="radio" name="Service" value="Hotel" id="Hotel">Hotel<input type="radio" name="Service" value="Car" id="Car">Car
                     </td>
                 </tr>
                 <tr>

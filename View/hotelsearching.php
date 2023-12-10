@@ -36,7 +36,7 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
     <?php include_once 'header.php'; ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
-            <?php include_once 'usermenu.php'; ?>
+            <?php include_once 'menu.php'; ?>
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">

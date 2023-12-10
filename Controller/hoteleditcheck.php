@@ -1,7 +1,9 @@
 <?php 
-     
-     session_start();
+
+    session_start();
      require_once('../Model/hotelownermodel.php');
+     require_once('../Model/authmodel.php');
+    
      $ownerusername=$_SESSION['username'];
     $hotelname = $_REQUEST['Hotelname'];
     $hoteladdress = $_REQUEST['Hoteladdress'];
@@ -15,18 +17,16 @@
      }else if(strlen($hotelname) < 3)
       {
          echo "Hotel Name must be greater than 3 letter ";
-
-        } 
-        else if (strpbrk($hotelname, $specialCharacters) !== false) {
-            echo "Hotel Name cannot contain special characters.";
-        }else{
+     }
+     
+     else if (strpbrk($hotelname, $specialCharacters) !== false) {
+        echo "Hotel Name cannot contain special characters.";
+    }else{
          
-         $status = hotelregistration($ownerusername, $hotelname, $hoteladdress, $city, $rating);
-
+         $status = editHotelInfo($hotelid,$ownerusername,$hotelname,$hoteladdress,$city,$rating);
          if($status){
              header("location: ../View/managehotel.php");
          }else{
              echo "invaid user!";
          }
      }
-?>

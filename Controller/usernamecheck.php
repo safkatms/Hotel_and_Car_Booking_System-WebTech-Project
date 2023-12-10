@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once ("../Model/usermodel.php");
+require_once ("../Model/authmodel.php");
 
 $username = $_REQUEST['username'];
 

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "../Model/ownermodel.php";
+require_once "../Model/authmodel.php";
 $service = (isset($_REQUEST['Service'])) ? $_REQUEST['Service'] : '';
 $firstname = $_REQUEST['Firstname'];
 $lastname = $_REQUEST['Lastname'];

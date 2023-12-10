@@ -8,13 +8,14 @@ require_once '../Controller/sessioncheck.php';
 <head>
     <title>StayDriveGo Booking</title>
     <script src="../Asset/userScript.js"></script></script>
+    <link rel="stylesheet" href="../Asset/common.css">
 </head>
 
 <body>
     <?php include_once 'header.php'; ?>
     <section style="display: flex;">
         <div style="width: 20%; display: flex; height: auto;">
-            <?php include_once 'usermenu.php'; ?>
+            <?php include_once 'menu.php'; ?>
         </div>
         <div style="width: 80%;display: flex;height: auto;">
             <fieldset style="width: 100%;">

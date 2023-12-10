@@ -2,9 +2,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
+     <title>Header</title>
+     <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        header {
+            background-color: #f4f4f4;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color:  white;
+        }
+
+        header h3 {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 24px;
+            margin: 0;
+        }
+
+        header div a {
+            text-decoration: none;
+            color: black;
+            margin: 0 10px;
+        }
+
+        header div a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
@@ -19,7 +52,7 @@
                 <a href="usersignup.php">Sign up</a>|
                 <a href="ownersignup.php">Sign up as Partner</a>
             </div>
-        </section>
+        
     </header>
 </body>
 
