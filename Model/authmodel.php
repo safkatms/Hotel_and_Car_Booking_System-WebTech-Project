@@ -106,6 +106,8 @@ function signinUser($username, $password)
             header("location: ../view/hotelownerhome.php");
         }else if($_SESSION['usertype']=='Admin'){
             header("location: ../view/adminhome.php");
+        }else if($_SESSION['usertype']=='Car'){
+            header("location: ../view/carownerhome.php");
         }
         return true;
     } else {

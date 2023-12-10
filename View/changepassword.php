@@ -10,6 +10,7 @@ require_once('../Controller/sessioncheck.php');
 <head>
     <title>Document</title>
     <script src="../Asset/profileScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Asset/common.css">
 </head>
 
 <body>

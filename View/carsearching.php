@@ -32,6 +32,7 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
 <head>
     <title>StayDriveGo Booking</title>
     <script src="../Asset/userScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
 </head>
 
 <body>

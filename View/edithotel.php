@@ -12,6 +12,8 @@ $hotel_info = getHotelInfo();
 <head>
     <title>Edit Hotel</title>
     <script src="../Asset/hotelScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Asset/common.css">
+
 </head>
 
 <body>

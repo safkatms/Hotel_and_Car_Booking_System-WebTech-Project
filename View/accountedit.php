@@ -12,6 +12,7 @@
    <title>Document</title>
    <script src="../Asset/profileScript.js"></script>
    <script src="../Asset/authScript.js"></script>
+   <link rel="stylesheet" type="text/css" href="../Asset/common.css">
 </head>
 <body>
     <?php include_once('header.php');?>

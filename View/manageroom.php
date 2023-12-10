@@ -13,6 +13,7 @@ $room_info = getroomInfo();
 <head>
     <script src="../Asset/hotelScript.js"></script>
     <title>Manage Room</title>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
 </head>
 
 <body>

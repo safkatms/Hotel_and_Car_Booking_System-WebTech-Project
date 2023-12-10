@@ -15,6 +15,7 @@ $info = viewBookingInfo($id);
 
 <head>
     <title>Edit Booking</title>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
 </head>
 
 <body>

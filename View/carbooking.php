@@ -13,6 +13,7 @@ $bookingInfo = CarBooking( $CarID );
 <head>
     <script src="../Asset/userScript.js"></script>
     <title>StayDriveGo Booking</title>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
 </head>
 
 <body onload="carBooking()">

@@ -14,6 +14,8 @@ $cancelledbooking_info = cancelledBookings();
 
 <head>
      <title>Bookings</title>
+     
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
 </head>
 
 <body>

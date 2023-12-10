@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
     <title>Admin</title>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
+
 </head>
 <body>
  <?php include_once('header.php');?> 

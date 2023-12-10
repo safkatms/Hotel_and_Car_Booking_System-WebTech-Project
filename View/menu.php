@@ -1,9 +1,10 @@
-<?php require_once('../Controller/sessioncheck.php');?>
+<?php require_once('../Controller/sessioncheck.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Usermenu</title>
+    <title>menu</title>
 </head>
 
 <body>
@@ -36,6 +37,16 @@
 
                 <li><a href="../Controller/logout.php">Logout</a></li>
             </ul>
+        <?php } else if ($_SESSION['usertype'] == 'Car') { ?>
+            <ul>
+            <li><a href="../view/carownerhome.php">Home</a></li>
+            <li><a href="../view/account.php">Account</a></li>
+            <li><a href="../view/carmanagement.php">Manage Cars</a></li>
+            <li><a href="../view/carbookingmanage.php">Manage Car Bookings</a></li>
+            <li><a href="../view/search.php">Search Users</a></li>
+            <li><a href="">Notification</a></li>
+            <li><a href="../controller/logout.php">Logout</a></li>
+        </ul>
         <?php } ?>
     </fieldset>
 </body>

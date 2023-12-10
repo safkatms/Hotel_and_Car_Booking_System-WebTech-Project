@@ -14,6 +14,8 @@ $data = getOwnerInfo($uname);
     
     <title>Manage Owner</title>
     <script src="../Asset/adminScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
+
 </head>
 
 <body>

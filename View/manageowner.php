@@ -12,6 +12,7 @@ $carownersinfo = getcarOwnerInfo();
 
 <head>
     <script src="../Asset/adminScript.js"></script>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
     <title>Manage Owner</title>
 </head>
 

@@ -12,6 +12,8 @@ $room_info = getroomInfo();
 
 <head>
     <title>Hotels</title>
+    <link rel="stylesheet" type="text/css" href="../Asset/home.css">
+
 </head>
 
 <body>

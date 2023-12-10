@@ -8,11 +8,14 @@
             margin: 0;
             padding: 0;
             font-family: 'Open Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         header {
             background-color: #f4f4f4;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); 
         }
 
         header section {
@@ -30,7 +33,7 @@
 
         header div a {
             text-decoration: none;
-            color: black;
+            color: #007bff;
             margin: 0 10px;
         }
 
