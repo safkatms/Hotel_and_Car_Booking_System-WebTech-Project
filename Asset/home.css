@@ -1,4 +1,4 @@
-/* External styles.css file */
+
 body {
   font-family: "Open Sans", sans-serif;
   margin: 0;
@@ -40,7 +40,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  margin-top: 10px; /* Space above the table */
+  margin-top: 10px;
 }
 
 th,

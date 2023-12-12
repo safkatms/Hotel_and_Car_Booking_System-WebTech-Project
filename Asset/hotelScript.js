@@ -42,10 +42,6 @@ let ratingSelected = ratingNA.checked || rating1.checked || rating2.checked || r
         }
     }
    
-  
-    
-
-        //header("location: ../View/managehotel.php");
         return true;
 
     
@@ -99,16 +95,16 @@ function validateroom() {
     xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(this.responseText);
-            let html = "";
+            let table = "";
             for (let i = 0; i < response.length; i++) {
-                html += "<fieldset><ul>";
-                html += "<li>Room: " + response[i].TypeName + "</li>";
-                html += "<li>Price Per Night: " + response[i].PricePerNight + "</li>";
-                html += "<li>Total Rooms: " + response[i].TotalRooms + "</li>";
-                html += "<li>Available Rooms: " + response[i].AvailableRooms + "</li>";
-                html += '</ul><a href="editroom.php?id=' + response[i].RoomTypeID + '"> EDIT </a></fieldset>';
+                table += "<fieldset><ul>";
+                table += "<li>Room: " + response[i].TypeName + "</li>";
+                table += "<li>Price Per Night: " + response[i].PricePerNight + "</li>";
+                table += "<li>Total Rooms: " + response[i].TotalRooms + "</li>";
+                table += "<li>Available Rooms: " + response[i].AvailableRooms + "</li>";
+                table += '</ul><a href="editroom.php?id=' + response[i].RoomTypeID + '"> EDIT </a></fieldset>';
             }
-            document.getElementById("results").innerHTML = html;
+            document.getElementById("list").innerHTML = table;
         }
     };
 

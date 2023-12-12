@@ -53,7 +53,7 @@
     <footer>
         <section style="display: flex;">
             <div style=" width: 40%;">
-                <p>Copyright © 2023 StayDriveGo.com™. All rights reserved.
+                <p>Copyright © 2023 StayDriveGo.com. All rights reserved.
                 </p>
             </div>
 

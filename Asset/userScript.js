@@ -95,13 +95,10 @@ function hotelBooking() {
     return false;
   }
 
-  // Calculate the number of nights
   let numberOfNights = (checkoutDate - checkinDate) / (1000 * 60 * 60 * 24);
-  // Calculate the total price
   let totalPrice = numberOfNights * numberOfRooms * pricePerNight;
 
-  // Update the total price element
-  totalPriceElement.value = totalPrice.toFixed(2); // Rounds to two decimal places
+  totalPriceElement.value = totalPrice; 
 }
 
 function cancelHotelBooking() {
@@ -149,21 +146,16 @@ function carBooking() {
   let dailyRate = parseFloat(document.getElementById("DailyRate").value);
   let totalPriceElement = document.getElementById("TotalPrice");
 
-  // Convert the dates from string to Date objects
   let start = new Date(pickupDate);
   let end = new Date(dropoffDate);
 
-  // Calculate the difference in milliseconds
   let difference = end - start;
 
-  // Convert milliseconds to days (1 day = 24 hours * 60 minutes * 60 seconds * 1000 milliseconds)
   let numberOfDays = difference / (24 * 60 * 60 * 1000);
 
-  // Calculate the total price
   let totalPrice = numberOfDays * dailyRate;
 
-  // Update the TotalPrice element
-  totalPriceElement.value = totalPrice; // Rounds to two decimal places
+  totalPriceElement.value = totalPrice;
 
   if (start >= end) {
     alert("Drop-off date must be after the Pick-up date.");

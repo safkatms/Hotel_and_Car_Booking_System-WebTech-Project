@@ -62,7 +62,7 @@ $room_info = getroomInfo();
                             <input type="submit" value="Submit">
                     </form>
                 </fieldset>
-                <fieldset style="width:100%" id="results">
+                <fieldset style="width:100%" id="list">
                     <?php if (!empty($room_info)) { ?>
                         <?php for ($i = 0; $i < count($room_info); $i++) { ?>
                             <fieldset>

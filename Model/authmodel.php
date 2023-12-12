@@ -123,13 +123,12 @@ function verifyUserCredentials($username, $password)
     if ($result) {
         $userData = mysqli_fetch_assoc($result);
         if ($userData) {
-            // Directly comparing the plain text password - not recommended for security reasons
             if ($password === $userData['password'] && $userData['banstatus']==0) {
-                return true; // Password is correct
+                return true;
             }
         }
     }
-    return false; // Username not found or password is incorrect
+    return false;
 }
 function getUserInfo()
 {

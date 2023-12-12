@@ -26,7 +26,7 @@ $usersinfo = getUserInfo();
             <section style="display:flex;">
             <div style="width: 30%;display:flex;  height: auto;">
                     <fieldset style="width: 100%; justify-content: center;">
-                        <img src="../Asset/profilePic.jpg" alt="" height="150px" width="150px" >
+                        <img src="../Asset/profilePic.jpg" alt="" height="150px" width="150px" ><br>
                         <a href="profilepicture.php">Change Profile Picture</a>
                     </fieldset>
                 </div>

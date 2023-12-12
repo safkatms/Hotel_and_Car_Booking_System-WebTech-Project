@@ -1,7 +1,6 @@
 <?php
 require_once('../Model/adminmodel.php');
 
-// Get the input JSON data and decode it
 $input = $_POST['data'];
 $inputData = json_decode($input, true);
 

@@ -1,15 +1,12 @@
 <?php
 require_once '../Controller/sessioncheck.php';
-require_once '../Model/searchingmodel.php'; // Make sure this contains the CarSearch function.
+require_once '../Model/searchingmodel.php'; 
 
-// Check if the form is submitted via GET
 if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])) {
-    // Capture the search criteria from the URL
     $pickup_location = $_GET['pickup_location'];
     $pickup_date = $_GET['pickup_date'];
     $dropoff_date = $_GET['dropoff_date'];
 
-    // Check for same day or invalid dates
     if ($pickup_date == $dropoff_date) {
         $error_message = "Pick-up and drop-off dates cannot be the same.";
     } else {
@@ -17,7 +14,6 @@ if (isset($_GET['pickup_location'], $_GET['pickup_date'], $_GET['dropoff_date'])
         $cars = CarSearch($pickup_location, $pickup_date, $dropoff_date, $sortOrder);
     }
 } else {
-    // Redirect back to search form if criteria are missing
     header('Location: userhome.php');
     exit;
 }

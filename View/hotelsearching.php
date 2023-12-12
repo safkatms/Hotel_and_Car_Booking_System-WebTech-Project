@@ -12,7 +12,6 @@ if (isset($_GET['city'], $_GET['checkin'], $_GET['checkout'], $_GET['room'])) {
     if ($checkin == $checkout) {
         $error_message = "Insert different check-out date.";
     } else {
-        // Assuming the HotelSearch function can handle empty sortOrder
         $sortOrder = isset($_GET['sort']) ? $_GET['sort'] : '';
         $hotels = HotelSearch($city, $room, $checkin, $checkout, $sortOrder);
     }
